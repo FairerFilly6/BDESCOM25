@@ -1,0 +1,160 @@
+html {
+    font-size: 62.5%;
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0;
+    font-size: 1.6rem;
+    line-height: 1.8;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+h1,h2,h3,p,label,a, table{
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0; /* Evita espacio extra innecesario */
+}
+
+.header {
+    background-color: rgb(144, 224, 224);
+    display: flex;
+    justify-content: center;
+    align-items: center;     
+    height: 10rem;           
+    width: 100%;             
+    text-align: center;
+}
+
+
+
+.login {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centrado vertical */
+    align-items: center;     /* Centrado horizontal */
+    padding: 2rem;
+    
+}
+
+.border{
+    border: 1px solid black;
+    padding: 1rem;
+    border-radius: 1rem;
+}
+
+
+
+.signin{
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centrado vertical */
+    align-items: center;
+}
+
+.centrar{
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centrado vertical */
+    align-items: center;
+    gap: 3rem;
+}
+
+/*Menus de inicio*/
+
+
+
+.elemento-opciones{
+    list-style: none;
+    background-color:  rgb(79, 190, 190);
+    margin: 1rem;
+    padding: 1rem;
+    text-align: center;
+    width: 100%;
+    border-radius: 1rem;
+}
+a{
+    text-decoration: none;
+}
+
+.lista-opciones {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+}
+
+/*Tablas*/
+
+.tabla-consultas {
+    width: 90%;
+    margin: 2rem auto;
+    border-collapse: collapse;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+.tabla-consultas th,
+.tabla-consultas td {
+    border: 1px solid #ccc;
+    padding: 1rem;
+}
+
+.tabla-consultas thead {
+    background-color: rgb(144, 224, 224);
+}
+
+.tabla-consultas tbody tr:nth-child(even) {
+    background-color: #f4f4f4;
+}
+
+.cancelacion{
+    color: red;
+}
+
+/*Formulario agendar cita*/
+
+.formulario-cita {
+    width: 90%;
+    max-width: 40rem;
+    margin: 2rem auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    font-family: Arial, sans-serif;
+}
+
+.formulario-cita label {
+    font-weight: bold;
+}
+
+.formulario-cita select,
+.formulario-cita button {
+    padding: 0.8rem;
+    font-size: 1.6rem;
+    border-radius: 0.5rem;
+    border: 1px solid #ccc;
+}
+
+.boton-confirmar {
+    background-color: rgb(79, 190, 190);
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.boton-confirmar:hover {
+    background-color: rgb(62, 155, 155);
+}
+
+
+.pago{
+    color: rgb(32, 218, 15);
+}

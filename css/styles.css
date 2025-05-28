@@ -90,6 +90,10 @@ a{
     margin: 0;
 }
 
+.mensaje-error{
+    color:red;
+}
+
 /*Tablas*/
 
 .tabla-consultas {

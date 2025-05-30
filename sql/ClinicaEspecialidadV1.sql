@@ -2,23 +2,23 @@ USE ClinicaEspecialidadV1
 
 CREATE TABLE TipoUsuario (
     ID_TipoUsuario INT PRIMARY KEY IDENTITY(1,1),
-    TipoUsuario NVARCHAR(50)
+    TipoUsuario NVARCHAR(50) NOT NULL
 );
 
 CREATE TABLE Usuario (
     CURP NVARCHAR(18) PRIMARY KEY ,
-    Nombre NVARCHAR(50),
-    Apellido_P NVARCHAR(50),
+    Nombre NVARCHAR(50) NOT NULL,
+    Apellido_P NVARCHAR(50) NOT NULL,
     Apellido_M NVARCHAR(50),
-    Fecha_Nac DATE,
+    Fecha_Nac DATE NOT NULL,
     Calle NVARCHAR(100),
     Numero NVARCHAR(10),
-    Colonia NVARCHAR(50),
+    Colonia NVARCHAR(50) NOT NULL,
     Codig_P NVARCHAR(10),
-    Ciudad NVARCHAR(50),
+    Ciudad NVARCHAR(50) NOT NULL,
     Estado NVARCHAR(50),
-    Telefono NVARCHAR(15),
-    Email NVARCHAR(100),
+    Telefono NVARCHAR(15) NOT NULL,
+    Email NVARCHAR(100) NOT NULL UNIQUE ,
     ID_TipoUsuario INT FOREIGN KEY REFERENCES TipoUsuario(ID_TipoUsuario)
 );
 
@@ -34,26 +34,26 @@ CREATE TABLE Paciente (
 
 CREATE TABLE TipoEmpleado (
     ID_TipoEmpleado INT PRIMARY KEY IDENTITY(1,1),
-    TipoEmpleado NVARCHAR(50)
+    TipoEmpleado NVARCHAR(50) NOT NULL
 );
 
 CREATE TABLE Empleado (
     ID_Empleado INT PRIMARY KEY IDENTITY(1,1),
     CURP NVARCHAR(18) FOREIGN KEY REFERENCES Usuario(CURP),
-    RFC NVARCHAR(13),
+    RFC NVARCHAR(13) ,
     Sueldo DECIMAL(10,2),
     ID_TipoEmpleado INT FOREIGN KEY REFERENCES TipoEmpleado(ID_TipoEmpleado)
 );
 
 CREATE TABLE Especialidad (
     ID_Especialidad INT PRIMARY KEY IDENTITY(1,1),
-    Nombre NVARCHAR(100),
+    Nombre NVARCHAR(100) NOT NULL,
     Costo_Consulta DECIMAL(10,2)
 );
 
 CREATE TABLE Medico (
     ID_Medico INT PRIMARY KEY IDENTITY(1,1),
-    Cedula_Pro NVARCHAR(20),
+    Cedula_Pro NVARCHAR(20) NOT NULL,
     ID_Empleado INT FOREIGN KEY REFERENCES Empleado(ID_Empleado),
     ID_Especialidad INT FOREIGN KEY REFERENCES Especialidad(ID_Especialidad)
 );
@@ -83,8 +83,8 @@ CREATE TABLE Cita (
     ID_Paciente INT FOREIGN KEY REFERENCES Paciente(ID_Paciente),
     ID_Medico INT FOREIGN KEY REFERENCES Medico(ID_Medico),
     ID_Especialidad INT FOREIGN KEY REFERENCES Especialidad(ID_Especialidad),
-    Fecha_Cita DATE,
-    Fecha_Reservacion DATE,
+    Fecha_Cita DATE NOT NULL,
+    Fecha_Reservacion DATE NOT NULL,
     ID_Factura INT FOREIGN KEY REFERENCES Factura(ID_Factura),
     ID_Consultorio INT FOREIGN KEY REFERENCES Consultorio(ID_Consultorio)
 );
@@ -104,7 +104,7 @@ CREATE TABLE Medicamento (
     Lote NVARCHAR(50),
     Costo DECIMAL(10,2),
     Precio DECIMAL(10,2),
-    Caducidad DATE
+    Caducidad DATE NOT NULL
 );
 
 CREATE TABLE DetalleReceta (
@@ -117,7 +117,7 @@ CREATE TABLE DetalleReceta (
 
 CREATE TABLE Servicio (
     ID_Servicio INT PRIMARY KEY IDENTITY(1,1),
-    Nombre NVARCHAR(100),
+    Nombre NVARCHAR(100) NOT NULL,
     Descripcion NVARCHAR(MAX),
     Costo DECIMAL(10,2)
 );
@@ -145,8 +145,8 @@ CREATE TABLE Pago (
     ID_Pago INT PRIMARY KEY IDENTITY(1,1),
     ID_Factura INT FOREIGN KEY REFERENCES Factura(ID_Factura),
     Metodo_Pago NVARCHAR(50),
-    Fecha_Pago DATE,
+    Fecha_Pago DATE NOT NULL,
     Monto DECIMAL(10,2),
     Total DECIMAL(10,2),
-    Estatus_Pago NVARCHAR(50)
+    Estatus_Pago NVARCHAR(50) NOT NULL
 );

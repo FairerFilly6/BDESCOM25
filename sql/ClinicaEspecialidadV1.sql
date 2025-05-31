@@ -1,4 +1,7 @@
+CREATE DATABASE ClinicaEspecialidadV1
+GO
 USE ClinicaEspecialidadV1
+GO
 
 CREATE TABLE TipoUsuario (
     ID_TipoUsuario INT PRIMARY KEY IDENTITY(1,1),
@@ -19,6 +22,7 @@ CREATE TABLE Usuario (
     Estado NVARCHAR(50),
     Telefono NVARCHAR(15) NOT NULL,
     Email NVARCHAR(100) NOT NULL UNIQUE ,
+    Pwd NVARCHAR(30) NOT NULL,
     ID_TipoUsuario INT FOREIGN KEY REFERENCES TipoUsuario(ID_TipoUsuario)
 );
 

@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($row && $row['Pwd'] == $pwd) {
             $_SESSION['email'] = $email;
             if ($row['id'] == 1) {
-                header("Location: inicioPaciente.php");
+                header("Location: paciente/inicioPaciente.php");
                 exit();
             } else {
                 $consulta = "SELECT ID_TipoEmpleado FROM Empleado WHERE CURP = ?";
@@ -27,10 +27,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $rowCons = $stmtConsulta->fetch(PDO::FETCH_ASSOC);
                     if ($rowCons) {
                         if ($rowCons['ID_TipoEmpleado'] == 1) {
-                            header("Location: inicioDoctor.php");
+                            header("Location: doctor/inicioDoctor.php");
                             exit();
                         } elseif ($rowCons['ID_TipoEmpleado'] == 2) {
-                            header("Location: inicioRecepcionista.php");
+                            header("Location: recepcionista/inicioRecepcionista.php");
                             exit();
                         }
                     }else{

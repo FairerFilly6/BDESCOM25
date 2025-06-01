@@ -25,7 +25,7 @@
                 <a href="#">Cancelar cita</a>
             </li>
             <li class="elemento-opciones">
-                <a href="#">Historial de citas</a>
+                <a href="mostrarCitasPaciente.php">Historial de citas</a>
             </li>
             <li class="elemento-opciones">
                 <a href="#">Pago citas</a>

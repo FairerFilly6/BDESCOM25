@@ -8,29 +8,33 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $pwd = $_POST['contrasena'];
 
     $conn = new Conexion();
-    $sql = "SELECT Email,password,ID_TipoUsuario AS id, CURP FROM Usuario WHERE Email = ?";
+    $sql = "SELECT Email,Pwd,ID_TipoUsuario AS id, CURP FROM Usuario WHERE Email = ?";
     $params = array($email);
 
     $stmt=$conn->seleccionar($sql,$params);
 
-    if($stmt){
-        foreach($stmt as $row){
-            if($row['password'] == $pwd){
-                $_SESSION['email']=$email;
-                if ($row['id'] == 1) {
-                    header("Location: inicioPaciente.php");
-                }else{
-                    $consulta = "SELECT ID_TipoEmpleado FROM Empleado WHere CURP = ?";
-                    $parametrosConsulta = array($row['CURP']);
-                    $stmtConsulta = $conn->seleccionar($consulta,$parametrosConsulta);
-                    if($stmtConsulta){
-                        foreach($stmtConsulta as $rowCons){
-                            if($rowCons['ID_TipoEmpleado'] == 1){
-                                header("Location: inicioDoctor.php");
-                            }elseif($rowCons['ID_TipoEmpleado'] == 2){
-                                header("Location: inicioRecepcionista.php");
-                            }
+    if ($stmt) {
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($row && $row['Pwd'] == $pwd) {
+            $_SESSION['email'] = $email;
+            if ($row['id'] == 1) {
+                header("Location: inicioPaciente.php");
+                exit();
+            } else {
+                $consulta = "SELECT ID_TipoEmpleado FROM Empleado WHERE CURP = ?";
+                $stmtConsulta = $conn->seleccionar($consulta, [$row['CURP']]);
+                if ($stmtConsulta) {
+                    $rowCons = $stmtConsulta->fetch(PDO::FETCH_ASSOC);
+                    if ($rowCons) {
+                        if ($rowCons['ID_TipoEmpleado'] == 1) {
+                            header("Location: inicioDoctor.php");
+                            exit();
+                        } elseif ($rowCons['ID_TipoEmpleado'] == 2) {
+                            header("Location: inicioRecepcionista.php");
+                            exit();
                         }
+                    }else{
+                        header("Location: index.php");
                     }
                 }
             }

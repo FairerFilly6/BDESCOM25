@@ -73,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </form>
 </div>
 <div class="signin ">
-    <a class="border" href="#">Crear cuenta</a>
+    <a class="border" href="crearCuenta.php">Crear cuenta</a>
 </div>
 
 </body>

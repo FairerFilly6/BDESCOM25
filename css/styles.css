@@ -162,3 +162,61 @@ a{
 .pago{
     color: rgb(32, 218, 15);
 }
+
+/*Formulario Registro*/
+
+.crear-cuenta {
+    width: 90%;
+    max-width: 40rem;
+    margin: 2rem auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    font-family: Arial, sans-serif;
+}
+
+.crear-cuenta label {
+    font-weight: bold;
+    margin-top: 0.5rem;
+}
+
+.crear-cuenta input[type="text"],
+.crear-cuenta input[type="email"],
+.crear-cuenta input[type="password"],
+.crear-cuenta input[type="date"],
+.crear-cuenta input[type="tel"],
+.crear-cuenta input[type="number"],
+.crear-cuenta textarea,
+.crear-cuenta select {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1.6rem;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+}
+
+.crear-cuenta textarea {
+    resize: vertical;
+    min-height: 5rem;
+}
+
+.crear-cuenta fieldset {
+    border: none;
+    padding: 1rem 0;
+}
+
+.boton-confirmar {
+    background-color: rgb(79, 190, 190);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1.6rem;
+    padding: 0.8rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.3s ease;
+}
+
+.boton-confirmar:hover {
+    background-color: rgb(62, 155, 155);
+}

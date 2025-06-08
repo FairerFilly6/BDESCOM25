@@ -1,3 +1,4 @@
+
 CREATE DATABASE ClinicaEspecialidadV1
 GO
 USE ClinicaEspecialidadV1
@@ -41,12 +42,19 @@ CREATE TABLE TipoEmpleado (
     TipoEmpleado NVARCHAR(50) NOT NULL
 );
 
+CREATE TABLE Horario(
+    ID_Horario INT PRIMARY KEY IDENTITY(1,1),
+    Inicio_Horario TIME,
+    Fin_Horario TIME
+);
+
 CREATE TABLE Empleado (
     ID_Empleado INT PRIMARY KEY IDENTITY(1,1),
     CURP NVARCHAR(18) FOREIGN KEY REFERENCES Usuario(CURP),
     RFC NVARCHAR(13) ,
     Sueldo DECIMAL(10,2),
-    ID_TipoEmpleado INT FOREIGN KEY REFERENCES TipoEmpleado(ID_TipoEmpleado)
+    ID_TipoEmpleado INT FOREIGN KEY REFERENCES TipoEmpleado(ID_TipoEmpleado),
+	ID_Horario INT FOREIGN KEY REFERENCES Horario(ID_Horario)
 );
 
 CREATE TABLE Especialidad (
@@ -55,17 +63,19 @@ CREATE TABLE Especialidad (
     Costo_Consulta DECIMAL(10,2)
 );
 
+
+
 CREATE TABLE Medico (
     ID_Medico INT PRIMARY KEY IDENTITY(1,1),
     Cedula_Pro NVARCHAR(20) NOT NULL,
     ID_Empleado INT FOREIGN KEY REFERENCES Empleado(ID_Empleado),
-    ID_Especialidad INT FOREIGN KEY REFERENCES Especialidad(ID_Especialidad)
+    ID_Especialidad INT FOREIGN KEY REFERENCES Especialidad(ID_Especialidad),
+    
 );
 
 CREATE TABLE Recepcionista (
     ID_Recepcionista INT PRIMARY KEY IDENTITY(1,1),
-    ID_Empleado INT FOREIGN KEY REFERENCES Empleado(ID_Empleado),
-    Horario NVARCHAR(50)
+    ID_Empleado INT FOREIGN KEY REFERENCES Empleado(ID_Empleado)
 );
 
 CREATE TABLE Consultorio (
@@ -82,16 +92,26 @@ CREATE TABLE Factura (
     Estatus NVARCHAR(50)
 );
 
+CREATE TABLE EstatusCita (
+    ID_EstatusCita INT PRIMARY KEY IDENTITY(1,1),
+    EstatusCita NVARCHAR(30)
+)
+
 CREATE TABLE Cita (
     Folio_Cita INT PRIMARY KEY IDENTITY(1,1),
     ID_Paciente INT FOREIGN KEY REFERENCES Paciente(ID_Paciente),
-    ID_Medico INT FOREIGN KEY REFERENCES Medico(ID_Medico),
+	ID_Horario INT FOREIGN KEY References Horario(ID_Horario),
+	ID_Medico INT FOREIGN KEY References Medico(ID_Medico),
     ID_Especialidad INT FOREIGN KEY REFERENCES Especialidad(ID_Especialidad),
     Fecha_Cita DATE NOT NULL,
     Fecha_Reservacion DATE NOT NULL,
     ID_Factura INT FOREIGN KEY REFERENCES Factura(ID_Factura),
-    ID_Consultorio INT FOREIGN KEY REFERENCES Consultorio(ID_Consultorio)
+    ID_Consultorio INT FOREIGN KEY REFERENCES Consultorio(ID_Consultorio),
+    ID_EstatusCita INT FOREIGN KEY REFERENCES EstatusCita (ID_EstatusCita),
+
+	CONSTRAINT UQ_HorarioConsulta_Fecha UNIQUE (ID_Horario, ID_Medico, Fecha_Cita)
 );
+
 
 CREATE TABLE Receta (
     Folio_Receta INT PRIMARY KEY IDENTITY(1,1),

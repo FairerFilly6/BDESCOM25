@@ -75,9 +75,10 @@ VALUES ('2025-06-20','Primera cita del sistema','Pagada')
 INSERT INTO Factura 
 VALUES ('2025-06-20','Segunda cita del sistema','Pagada')
 
+SELECT * FROM Cita
 
 INSERT INTO Cita 
-VALUES (1,2,1,1,'2025-06-28','2025-06-20',1,1,2)
+VALUES (1,2,1,'2025-06-28','2025-06-20',1,1,2)
 
 
 INSERT INTO Usuario 
@@ -97,12 +98,22 @@ INSERT INTO Medico VALUES ('CEDPRUEBA224466',3,2)
 
 
 
---Folio_Cita, ID_Paciente  , ID_Horario , ID_Medico , ID_Especialidad , Fecha_Cita , Fecha_Reservacion, ID_Factura  ,ID_Consultorio  ,ID_EstatusCita  
+--Folio_Cita, ID_Paciente  , ID_Horario , ID_Medico , Fecha_Cita , Fecha_Reservacion, ID_Factura  ,ID_Consultorio  ,ID_EstatusCita  
+--Cita en el pasado
 INSERT INTO Cita 
-VALUES (1,1,3,2,'2024-06-28','2025-06-20',2,1,2)
+VALUES (1,1,3,'2024-06-28','2025-06-20',2,1,2)
 
+--Cita en mas de 3 meses
 INSERT INTO Cita 
-VALUES (2,3,3,2,'2027-06-28','2025-06-27',2,1,2)
+VALUES (2,3,3,'2027-06-28','2025-06-27',2,1,2)
+
+--Cita en menos de 48hrs
+INSERT INTO Cita 
+VALUES (2,3,3,'2025-06-28','2025-06-27',2,1,2)
+
+--Cita fuera del horario del doctor
+INSERT INTO Cita 
+VALUES (2,13,3,'2025-06-28','2025-06-20',2,1,2)
 
 INSERT INTO Receta VALUES 
 ('2025-06-28','Alergia al polvo','Alergias','Loratadina cada que se presente un evento de alergia',1)

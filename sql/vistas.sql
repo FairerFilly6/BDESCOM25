@@ -19,3 +19,13 @@ as return
 	select * from CitasMedico where @fechaBuscada=Fecha_Cita
 )
 -- Example: select * from obtenerCitasPendientes(cast( '2024-06-28' as date ))
+
+create function  obtenerEdadPaciente ( @fech_nac date ) returns int
+as 
+begin
+
+	return datediff(mm, @fech_nac, getdate())/12
+
+end
+
+-- Example: select dbo.obtenerEdadPaciente( cast( '2000-07-11' as date ) ) as Edad

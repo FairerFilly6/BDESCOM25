@@ -29,3 +29,15 @@ begin
 end
 
 -- Example: select dbo.obtenerEdadPaciente( cast( '2000-07-11' as date ) ) as Edad
+
+create view HorarioMedicosDisponible as
+	select
+		med.ID_Medico,
+		hor.Inicio_Horario,
+		hor.Fin_Horario
+	from
+	Medico med left join Cita cit on med.ID_Medico=cit.ID_Medico
+	left join Horario hor on cit.ID_Horario=hor.ID_Horario
+	where cit.Folio_Cita is not null
+
+	select * from Horario hor left join CitasMedico cm on hor.Inicio_Horario = cm.Inicio_Horario

@@ -17,7 +17,7 @@ create function obtenerDisponibilidadMedico( @idMedico int, @fecha date ) return
 as return (
 	select hd.Horario, 
 		case
-			when cm.Medico is null then 'Disponible'
+			when cm.Horario is null then 'Disponible'
 			else 'Ocupado'
 		end as Disponibilidad
 		from HorariosDia hd left join CitasMedico cm on hd.Horario=cm.Horario and ID_Medico=@idMedico and cm.Fecha_Cita=@fecha

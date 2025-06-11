@@ -41,3 +41,19 @@ create view HorarioMedicosDisponible as
 	where cit.Folio_Cita is not null
 
 	select * from Horario hor left join CitasMedico cm on hor.Inicio_Horario = cm.Inicio_Horario
+
+--vista Horarios
+
+CREATE VIEW HorariosDia
+AS
+SELECT ID_Horario AS ID, CONCAT( LEFT(Inicio_Horario,5) , ' - ',  LEFT(Fin_Horario,5) ) AS Horario FROM Horario WHERE ID_Horario <= 13
+
+
+--vista especialistas
+
+CREATE VIEW Especialistas
+AS
+SELECT M.ID_Medico AS ID, CONCAT(U.nombre,' ',U.Apellido_P) AS Nombre, E.Nombre AS Especialidad, E.Costo_Consulta AS Costo FROM Medico M 
+LEFT JOIN Especialidad E on M.ID_Especialidad = E.ID_Especialidad
+LEFT JOIN Empleado Emp ON M.ID_Empleado = Emp.ID_Empleado
+LEFT JOIN Usuario U ON Emp.CURP = U.CURP

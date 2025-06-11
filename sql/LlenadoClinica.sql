@@ -1,3 +1,5 @@
+USE ClinicaEspecialidadV1
+
 
 
 USE ClinicaEspecialidadV1
@@ -61,6 +63,13 @@ INSERT INTO Empleado VALUES('CURPPRUEBAA223344','RFC223344',50000,1,14)
 
 INSERT INTO Especialidad VALUES ('Cardiologo',700)
 INSERT INTO Especialidad VALUES ('Nefrologo',900)
+INSERT INTO Especialidad VALUES ('Dermatologo', 850);
+INSERT INTO Especialidad VALUES ('Pediatra', 950);
+INSERT INTO Especialidad VALUES ('Ginecologo', 1000);
+INSERT INTO Especialidad VALUES ('Ortopedista', 1100);
+INSERT INTO Especialidad VALUES ('Oftalmologo', 900);
+INSERT INTO Especialidad VALUES ('Psiquiatra', 1300);
+INSERT INTO Especialidad VALUES ('Endocrinologo', 1150);
 
 INSERT INTO Medico VALUES ('CEDPRUEBA223344',1,1)
 

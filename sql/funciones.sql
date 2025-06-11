@@ -8,9 +8,7 @@ as return
 create function  obtenerEdadPaciente ( @fech_nac date ) returns int
 as 
 begin
-
 	return datediff(mm, @fech_nac, getdate())/12
-
 end
 
 create function obtenerDisponibilidadMedico( @idMedico int, @fecha date ) returns table

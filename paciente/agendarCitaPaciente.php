@@ -79,7 +79,10 @@
 
     </form>
 
-
+    
+    <div class="logout centrar">
+        <a class="border" href="inicioPaciente.php">Regresar al menú principal</a>
+    </div>
 
     <div class="logout centrar">
         <a class="border" href="#">Cerrar sesión</a>

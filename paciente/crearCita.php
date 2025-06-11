@@ -40,12 +40,13 @@
             $insercionFactura = $conn->insertar($crearFactura,$paramsFactura);
 
             if ($insercionFactura) {
-                $factura = "SELECT ID_Factura AS ID FROM Factura WHERE Fecha = ?";
-                $paramsConsultaFactura = array($fechaFactura);
-                $facturaID = $conn->seleccionar($factura,$paramsConsultaFactura);
-                if ($facturaID) {
-                    $resultadoFactura = $facturaID->fetch(PDO::FETCH_ASSOC);
-                    $idFactura = $resultadoFactura['ID'];
+                // $factura = "SELECT ID_Factura AS ID FROM Factura WHERE Fecha = ?";
+                // $paramsConsultaFactura = array($fechaFactura);
+                // $facturaID = $conn->seleccionar($factura,$paramsConsultaFactura);
+                // if ($facturaID) {
+                    // $resultadoFactura = $facturaID->fetch(PDO::FETCH_ASSOC);
+                    // $idFactura = $resultadoFactura['ID'];
+                    $idFactura = $conn->lastInsertId();
 
                     $insertarCita = "INSERT INTO Cita VALUES (?,?,?,?,?,?,?,?)";
                     $paramsCita = array($idPaciente,$idhorario,$idMedico,$fechaCita,$fechaReservacion,$idFactura,$idConsultorio,$estatusCita);
@@ -54,7 +55,7 @@
                          header("Location: mostrarCitasPaciente.php");
                     }
 
-                }
+                
                 
             }
 

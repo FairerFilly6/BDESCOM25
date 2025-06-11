@@ -65,6 +65,10 @@ h1,h2,h3,p,label,a, table{
     gap: 3rem;
 }
 
+.logout{
+    margin-top: 10px;
+}
+
 /*Menus de inicio*/
 
 

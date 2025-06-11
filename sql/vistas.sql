@@ -69,3 +69,11 @@ JOIN
 LEFT JOIN 
     Pago PAGO ON F.ID_Factura = PAGO.ID_Factura;
 >>>>>>> db67e6684c7fec99d920af4738a61a18ca27498d
+
+create or alter view VistaMedico as
+select ID_Medico, Cedula_Pro, ID_Empleado, Nombre, Costo_Consulta
+from Medico M
+full outer join Especialidad E
+on M.ID_Especialidad = E.ID_Especialidad
+where M.ID_Especialidad is null
+or E.ID_Especialidad is null;

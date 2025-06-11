@@ -220,3 +220,50 @@ a{
 .boton-confirmar:hover {
     background-color: rgb(62, 155, 155);
 }
+
+
+/*Formulario cita*/
+
+.formulario-cita input[type="date"]{
+    background-color: #f0f0f0;
+    color: #333;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: inherit;
+    width: 100%;
+    max-width: 300px;
+    box-sizing: border-box;
+}
+
+/*Procesar cita*/
+/* Puedes agregar esto en tu archivo styles.css */
+.alerta {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.2em;
+    padding: 10px;
+    border-radius: 8px;
+    width: fit-content;
+    margin: 20px auto;
+}
+
+.alerta.rojo {
+    background-color: #ffe5e5;
+    color: #b30000;
+    border: 1px solid #b30000;
+}
+
+.alerta.verde {
+    background-color: #e5ffe5;
+    color: #006600;
+    border: 1px solid #006600;
+}
+
+.confirmar-cita{
+    
+}
+
+
+

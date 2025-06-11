@@ -40,7 +40,7 @@
                 LEFT JOIN Empleado Emp ON Med.ID_Empleado = Emp.ID_Empleado
                 LEFT JOIN Usuario Us ON Emp.CURP = Us.CURP
                 LEFT JOIN Horario Ho ON Cit.ID_Horario = Ho.ID_Horario
-                LEFT JOIN Especialidad Esp ON Cit.ID_Especialidad = Esp.ID_Especialidad
+                LEFT JOIN Especialidad Esp ON Med.ID_Especialidad = Esp.ID_Especialidad
                 LEFT JOIN Consultorio Con ON Cit.ID_Consultorio = Con.ID_Consultorio
                 LEFT JOIN Factura Fac ON Cit.ID_Factura = Fac.ID_Factura
                 WHERE Cit.ID_Paciente = ?

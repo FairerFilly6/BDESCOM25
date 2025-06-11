@@ -1,3 +1,23 @@
+<?php
+    session_start();
+
+    if (!isset($_SESSION['email'])) {
+        header("Location: ../index.php");
+        exit();
+    }
+
+    include_once("../Clases/Conexion.php");
+
+    $conn = new Conexion();
+    $especialistas = 'SELECT * FROM Especialistas';
+    $stmt = $conn->seleccionar($especialistas);
+
+    $horario = 'SELECT * FROM HorariosDia';
+    $consultaHorario = $conn->seleccionar($horario);
+
+
+?>
+
 
 
 <!DOCTYPE html>
@@ -17,31 +37,46 @@
     <h2>Bienvenido Paciente</h2>
     <h3>Agendar cita</h3>
 
-    <form class="formulario-cita" method="POST" action="procesar_cita.php">
+    <form class="formulario-cita" method="POST" action="procesarCita.php">
     
 
-        <label for="especialidad">Especialidad:</label>
+        <label for="especialidad">Especialista</label>
         <select name="especialidad" id="especialidad" required>
-            <option  selected disabled value="">-- Selecciona una especialidad --</option>
-            <option value="">Nefrologo</option>
-            <option value="">Cardiologo</option>
+            <option value="" disabled selected >Seleccione una especialidad</option>
+            <?php
+                if($stmt){
+                    foreach ($stmt as $row) {
+                        echo '<option value ="'.$row['ID'] .'" >';
+                        echo $row['Especialidad'] . ' ' .$row['Nombre'] . ' - Costo consulta: $' . $row['Costo']  ;
+                        echo '</option>';
+                    }     
+                }
+            ?>
         </select>
 
-        <label for="medico">Médico:</label>
-        <select name="medico" id="medico" required>
-            <option selected disabled value="">-- Selecciona un médico --</option>
-            <option value="">Juan Perez</option>
-            <option value="">Miguel Lopez</option>
-        </select>
-
+        
+        <h5>Considere que no se pueden reservar citas con menos de 48hrs de anticipacion ni 3 meses de antelacion</h5>
         <label for="fecha">Fecha:</label>
-        <select name="fecha" id="fecha" required>
-            <option selected disabled value="">-- Selecciona una fecha --</option>
-            <option value="">14/1/2025 15:30</option>
-            <option value="">10/12/2025 10:30</option>
+        <input required name="fecha" type="date">
+
+        <label for="horario">Horario</label>
+        <select name="horario" id="horario" required>
+            <option value="" disabled selected >Seleccione un horario</option>
+            <?php
+                if($consultaHorario){
+                    foreach ($consultaHorario as $row) {
+                        echo '<option value ="'.$row['ID'] .'" >';
+                        echo $row['Horario']   ;
+                        echo '</option>';
+                    }     
+                }
+            ?>
         </select>
 
-        <button type="submit" class="boton-confirmar">Confirmar</button>
+        <button type="submit" class="boton-confirmar">Verificar disponibilidad del doctor</button>
+
+
+
     </form>
 
 

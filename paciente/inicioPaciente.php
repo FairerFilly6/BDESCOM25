@@ -19,7 +19,7 @@
     <div class="border">
         <ul class="lista-opciones">
             <li class="elemento-opciones">
-                <a href="#">Agendar cita</a>
+                <a href="agendarCitaPaciente.php">Agendar cita</a>
             </li>
             <li class="elemento-opciones">
                 <a href="#">Cancelar cita</a>

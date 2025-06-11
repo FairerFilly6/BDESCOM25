@@ -24,3 +24,27 @@ SELECT M.ID_Medico AS ID, CONCAT(U.nombre,' ',U.Apellido_P) AS Nombre, E.Nombre 
 LEFT JOIN Especialidad E on M.ID_Especialidad = E.ID_Especialidad
 LEFT JOIN Empleado Emp ON M.ID_Empleado = Emp.ID_Empleado
 LEFT JOIN Usuario U ON Emp.CURP = U.CURP
+
+
+    CREATE VIEW VistaFacturacionPorPaciente AS
+SELECT 
+    P.ID_Paciente,
+    U.Nombre + ' ' + U.Apellido_P + ' ' + U.Apellido_M AS NombreCompleto,
+    F.ID_Factura,
+    F.Fecha AS FechaFactura,
+    F.Concepto,
+    F.Estatus AS EstatusFactura,
+    PAGO.Metodo_Pago,
+    PAGO.Monto,
+    PAGO.Total,
+    PAGO.Fecha_Pago
+FROM 
+    Paciente P
+JOIN 
+    Usuario U ON P.CURP = U.CURP
+JOIN 
+    Cita C ON P.ID_Paciente = C.ID_Paciente
+JOIN 
+    Factura F ON C.ID_Factura = F.ID_Factura
+LEFT JOIN 
+    Pago PAGO ON F.ID_Factura = PAGO.ID_Factura;

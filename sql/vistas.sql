@@ -39,48 +39,38 @@ create view HistorialCitasPaciente as
                 LEFT JOIN Especialidad Esp ON Med.ID_Especialidad = Esp.ID_Especialidad
                 LEFT JOIN Consultorio Con ON Cit.ID_Consultorio = Con.ID_Consultorio
                 LEFT JOIN Factura Fac ON Cit.ID_Factura = Fac.ID_Factura
+
+CREATE VIEW Especialistas AS
+	SELECT M.ID_Medico AS ID, CONCAT(U.nombre,' ',U.Apellido_P) AS Nombre, E.Nombre AS Especialidad, E.Costo_Consulta AS Costo
+	FROM Medico M LEFT JOIN Especialidad E on M.ID_Especialidad = E.ID_Especialidad
+		LEFT JOIN Empleado Emp ON M.ID_Empleado = Emp.ID_Empleado
+		LEFT JOIN Usuario U ON Emp.CURP = U.CURP
+
+CREATE VIEW FacturacionPorPaciente AS
+	SELECT 
+		P.ID_Paciente,
+		U.Nombre + ' ' + U.Apellido_P + ' ' + U.Apellido_M AS NombreCompleto,
+		F.ID_Factura,
+		F.Fecha AS FechaFactura,
+		F.Concepto,
+		F.Estatus AS EstatusFactura,
+		PAGO.Metodo_Pago,
+		PAGO.Monto,
+		PAGO.Total,
+		PAGO.Fecha_Pago
+	FROM 
+		Paciente P JOIN Usuario U ON P.CURP = U.CURP
+		JOIN Cita C ON P.ID_Paciente = C.ID_Paciente
+		JOIN Factura F ON C.ID_Factura = F.ID_Factura
+		LEFT JOIN Pago PAGO ON F.ID_Factura = PAGO.ID_Factura;
+
 -- Pendiente
-CREATE VIEW HorariosDia
+CREATE VIEW IntervalosDisponiblesCitas
 AS
 SELECT ID_Horario AS ID, CONCAT( LEFT(Inicio_Horario,5) , ' - ',  LEFT(Fin_Horario,5) ) AS Horario FROM Horario WHERE ID_Horario <= 13
 
 
-CREATE VIEW Especialistas
-AS
-SELECT M.ID_Medico AS ID, CONCAT(U.nombre,' ',U.Apellido_P) AS Nombre, E.Nombre AS Especialidad, E.Costo_Consulta AS Costo FROM Medico M 
-LEFT JOIN Especialidad E on M.ID_Especialidad = E.ID_Especialidad
-LEFT JOIN Empleado Emp ON M.ID_Empleado = Emp.ID_Empleado
-LEFT JOIN Usuario U ON Emp.CURP = U.CURP
 
-<<<<<<< HEAD
-create view CorreosUsuarios as
-	select us.Nombre+' '+us.Apellido_P+' '+us.Apellido_M as Usuario, us.Email, tu.TipoUsuario
-	from Usuario us left join TipoUsuario tu on us.ID_TipoUsuario = tu.ID_TipoUsuario
-=======
-
-    CREATE VIEW VistaFacturacionPorPaciente AS
-SELECT 
-    P.ID_Paciente,
-    U.Nombre + ' ' + U.Apellido_P + ' ' + U.Apellido_M AS NombreCompleto,
-    F.ID_Factura,
-    F.Fecha AS FechaFactura,
-    F.Concepto,
-    F.Estatus AS EstatusFactura,
-    PAGO.Metodo_Pago,
-    PAGO.Monto,
-    PAGO.Total,
-    PAGO.Fecha_Pago
-FROM 
-    Paciente P
-JOIN 
-    Usuario U ON P.CURP = U.CURP
-JOIN 
-    Cita C ON P.ID_Paciente = C.ID_Paciente
-JOIN 
-    Factura F ON C.ID_Factura = F.ID_Factura
-LEFT JOIN 
-    Pago PAGO ON F.ID_Factura = PAGO.ID_Factura;
->>>>>>> db67e6684c7fec99d920af4738a61a18ca27498d
 
 create or alter view VistaMedico as
 select ID_Medico, Cedula_Pro, ID_Empleado, Nombre, Costo_Consulta

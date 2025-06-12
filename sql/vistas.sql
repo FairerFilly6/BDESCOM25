@@ -65,13 +65,9 @@ CREATE VIEW FacturacionPorPaciente AS
 		JOIN Factura F ON C.ID_Factura = F.ID_Factura
 		LEFT JOIN Pago PAGO ON F.ID_Factura = PAGO.ID_Factura;
 
--- Pendiente
 CREATE VIEW IntervalosDisponiblesCitas
 AS
 SELECT ID_Horario AS ID, CONCAT( LEFT(Inicio_Horario,5) , ' - ',  LEFT(Fin_Horario,5) ) AS Horario FROM Horario WHERE ID_Horario <= 13
-
-
-
 
 create or alter view VistaMedico as
 select ID_Medico, Cedula_Pro, ID_Empleado, Nombre, Costo_Consulta

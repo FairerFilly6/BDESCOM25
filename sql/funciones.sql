@@ -24,40 +24,34 @@ as return (
 		cross apply dbo.obtenerHorarioServicioMedico(@idMedico) serv where ho.ID_Horario <> 14 and ho.ID_Horario <> 15
 )
 
-
-
-select * from Cita
-select * from Horario
-select * from Empleado
-select * from Medico
-select * from dbo.obtenerDisponibilidadMedico(1, '2025-06-28')
-select * from CitasClinica
-select * from HorariosDia
-CREATE FUNCTION fn_MedicoDisponible
-(
-    @ID_Medico INT,
-    @Fecha_Cita DATE,
-    @ID_Horario INT
-)
-RETURNS BIT
+CREATE FUNCTION fn_MedicoDisponible (@ID_Medico INT, @Fecha_Cita DATE, @ID_Horario INT) RETURNS BIT
 AS
-BEGIN
-    DECLARE @Disponible BIT
+	BEGIN
+		DECLARE @Disponible BIT
 
-    IF EXISTS (
-        SELECT 1
-        FROM Cita
-        WHERE ID_Medico = @ID_Medico
-          AND Fecha_Cita = @Fecha_Cita
-          AND ID_Horario = @ID_Horario
-    )
-    BEGIN
-        SET @Disponible = 0 -- No disponible
-    END
-    ELSE
-    BEGIN
-        SET @Disponible = 1 -- Disponible
-    END
+		IF EXISTS (
+			SELECT 1
+			FROM Cita
+			WHERE ID_Medico = @ID_Medico
+			  AND Fecha_Cita = @Fecha_Cita
+			  AND ID_Horario = @ID_Horario
+		)
+		BEGIN
+			SET @Disponible = 0 -- No disponible
+		END
+		ELSE
+		BEGIN
+			SET @Disponible = 1 -- Disponible
+		END
 
-    RETURN @Disponible
-END
+		RETURN @Disponible
+	END
+
+create function obtenerCitasPorEspecualidad () returns table
+as return (
+	select es.Nombre, count(es.Nombre) as CitasPorEspecialidad
+	from Cita cit left join Medico med on cit.ID_Medico=med.ID_Medico
+	left join Especialidad es on med.ID_Especialidad = es.ID_Especialidad
+	group by es.Nombre
+)
+

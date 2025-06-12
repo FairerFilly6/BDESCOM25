@@ -1,14 +1,15 @@
 
 create view CitasClinica as
 	select
-		us.Nombre+' '+us.Apellido_P+' '+us.Apellido_M as Medico, us.CURP as CurpMedico, us.Email as EmailMedico,
+		med.ID_Medico, us.Nombre+' '+us.Apellido_P+' '+us.Apellido_M as Medico, us.Email as EmailMedico,
 		esp.Nombre as Especialidad,
+		pac.ID_Paciente,
 		usP.Nombre+' '+usP.Apellido_P+' '+usP.Apellido_M as Paciente,
-		usP.CURP as CurpPaciente,
 		usP.Email as EmailPaciente,
 		cit.Folio_Cita,
 		cit.Fecha_Cita,
-		CONCAT( LEFT(hor.Inicio_Horario ,5) , ' - ',  LEFT(hor.Fin_Horario,5) ) AS Horario
+		hor.Inicio_Horario,
+		hor.Fin_Horario
 	from
 		Medico med left join Empleado emp on med.ID_Empleado = emp.ID_Empleado
 		left join Usuario us on emp.CURP = us.CURP

@@ -1,7 +1,11 @@
 
-create view CitasMedico as
-	select med.ID_Medico,us.Nombre+' '+us.Apellido_P+' '+us.Apellido_M as Medico, us.CURP, Email,
+create view CitasClinica as
+	select
+		us.Nombre+' '+us.Apellido_P+' '+us.Apellido_M as Medico, us.CURP as CurpMedico, us.Email as EmailMedico,
 		esp.Nombre as Especialidad,
+		usP.Nombre+' '+usP.Apellido_P+' '+usP.Apellido_M as Paciente,
+		usP.CURP as CurpPaciente,
+		usP.Email as EmailPaciente,
 		cit.Folio_Cita,
 		cit.Fecha_Cita,
 		CONCAT( LEFT(hor.Inicio_Horario ,5) , ' - ',  LEFT(hor.Fin_Horario,5) ) AS Horario
@@ -11,6 +15,8 @@ create view CitasMedico as
 		left join Especialidad esp on med.ID_Especialidad = esp.ID_Especialidad
 		left join Cita cit on med.ID_Medico = cit.ID_Medico 
 		left join Horario hor on cit.ID_Horario = hor.ID_Horario
+		left join Paciente pac on cit.ID_Paciente=pac.ID_Paciente
+		left join Usuario usP on usP.CURP=pac.CURP
 			where cit.Folio_Cita is not null
 
 create view HistorialCitasPaciente as
@@ -33,12 +39,7 @@ create view HistorialCitasPaciente as
                 LEFT JOIN Especialidad Esp ON Med.ID_Especialidad = Esp.ID_Especialidad
                 LEFT JOIN Consultorio Con ON Cit.ID_Consultorio = Con.ID_Consultorio
                 LEFT JOIN Factura Fac ON Cit.ID_Factura = Fac.ID_Factura
-                
-
-create view DetallesCita as
-	select cp.Folio_Cita, Medico, Especialidad as EspecialidadDoctor, Paciente, cp.Fecha_Cita, cp.horario as Horario
-		from CitasMedico cm inner join CitasPaciente cp on cm.Folio_Cita = cp.Folio_Cita
-
+-- Pendiente
 CREATE VIEW HorariosDia
 AS
 SELECT ID_Horario AS ID, CONCAT( LEFT(Inicio_Horario,5) , ' - ',  LEFT(Fin_Horario,5) ) AS Horario FROM Horario WHERE ID_Horario <= 13

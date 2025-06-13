@@ -47,7 +47,7 @@ AS
 		RETURN @Disponible
 	END
 
-create function obtenerCitasPorEspecualidad () returns table
+create function obtenerCitasPorEspecialidad () returns table
 as return (
 	select es.Nombre, count(es.Nombre) as CitasPorEspecialidad
 	from Cita cit left join Medico med on cit.ID_Medico=med.ID_Medico

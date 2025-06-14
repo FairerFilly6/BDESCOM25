@@ -84,6 +84,13 @@
             $validezCitas = false;
         }
 
+
+        $consultaCitaUnica = 'SELECT 1 FROM Cita WHERE Fecha_Cita = ? AND ID_Horario = ?  AND ID_Medico = ?';
+        $paramCitaUnica = array($fecha, $horario,$idEspecialista);
+
+        $citaUnica = $conn->seleccionar($consultaCitaUnica,$paramCitaUnica);
+        $validezCitaUnica = $citaUnica && $citaUnica->rowCount() === 0;
+
         // var_dump($validezFecha);
         // echo '<br>';
         // var_dump($validez48hrs);
@@ -95,7 +102,7 @@
         // var_dump($validezCitas);
         // echo '<br>';
 
-       $citaDisponible = $validezFecha && $validez48hrs && $validez3meses && $validezHorario && $validezCitas;
+       $citaDisponible = $validezFecha && $validez48hrs && $validez3meses && $validezHorario && $validezCitas && $validezCitaUnica;
         // var_dump($validezFecha);
         // echo '<br>';
     }
@@ -141,6 +148,9 @@
         <?php endif; ?>
         <?php if (!$validezCitas): ?>
             <h3 class="alerta rojo"> No es posible reservar una cita si ya tiene una pendiente con el mismo especialista </h3>
+        <?php endif; ?>
+        <?php if (!$validezCitaUnica): ?>
+            <h3 class="alerta rojo"> Esta cita ya esta reservada</h3>
         <?php endif; ?>
 
         <a href="agendarCitaPaciente.php">Buscar otra cita</a>

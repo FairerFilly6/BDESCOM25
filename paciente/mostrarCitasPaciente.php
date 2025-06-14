@@ -7,7 +7,6 @@
         exit();
     }
 
-
     include_once("../Clases/Conexion.php");
     $conn = new Conexion();
     $sql = 'SELECT P.ID_Paciente AS id 
@@ -24,26 +23,10 @@
 
         if ($row) {
             $consulta = 
-                "SELECT Cit.Folio_Cita AS Folio, 
-                    CONCAT(Us.Nombre, ' ', Us.Apellido_P) AS Medico,
-                    Esp.Nombre AS Especialidad,
-                    Cit.Fecha_Cita AS FechaCita, 
-                    CONCAT(
-                        LEFT(Ho.Inicio_Horario,5), ' - ',
-                        LEFT(Ho.Fin_Horario,5) )AS Horario,
-                    Cit.Fecha_Reservacion AS FechaRes, 
-                    Con.Numero AS NumConsultorio,
-                    Con.Piso AS PisoConsultorio,
-                    Fac.Estatus AS Estatus
-                FROM Cita Cit
-                LEFT JOIN Medico Med ON Cit.ID_Medico = Med.ID_Medico
-                LEFT JOIN Empleado Emp ON Med.ID_Empleado = Emp.ID_Empleado
-                LEFT JOIN Usuario Us ON Emp.CURP = Us.CURP
-                LEFT JOIN Horario Ho ON Cit.ID_Horario = Ho.ID_Horario
-                LEFT JOIN Especialidad Esp ON Med.ID_Especialidad = Esp.ID_Especialidad
-                LEFT JOIN Consultorio Con ON Cit.ID_Consultorio = Con.ID_Consultorio
-                LEFT JOIN Factura Fac ON Cit.ID_Factura = Fac.ID_Factura
-                WHERE Cit.ID_Paciente = ?
+                "SELECT Folio, Medico, Especialidad, FechaCita, Horario,
+                    FechaRes, NumConsultorio, PisoConsultorio, Estatus
+                     from HistorialCitasPaciente
+                WHERE ID_Paciente = ?
                 ORDER BY FechaCita DESC";
             $paramConsulta = [$row["id"]];
 
@@ -71,6 +54,9 @@
 
 <div class="menu centrar">
     <h2>Bienvenido Paciente</h2>
+    <?php if(false): ?>
+        <h2>Prueba etiqueta</h2>
+    <?php endif; ?>
     <h3>Citas registradas</h3>
     <table class="tabla-consultas">
         <thead>

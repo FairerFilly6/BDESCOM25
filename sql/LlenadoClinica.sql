@@ -1,8 +1,16 @@
-USE ClinicaEspecialidadV1
+USE ClinicaEspecialidadV6
 
+INSERT INTO Medicamento
+VALUES ('Loratadina','AAAA',100,120,'12/10/2030')
 
+INSERT INTO Medicamento
+VALUES ('Aspirina','BBBB',200,220,'12/10/2030')
 
-USE ClinicaEspecialidadV1
+INSERT INTO Servicio
+VALUES ('Curacion','Curacion de una herida menor',100),
+		('Inyeccion','Aplicacion de inyeccion', 150)
+
+		
 
 INSERT INTO TipoUsuario VALUES ('Paciente')
 
@@ -29,6 +37,10 @@ VALUES ('CURPPRUEBAA223344','Miguel', 'López','Guzman','1970-07-28','Orfebreria
 
 
 
+INSERT INTO Usuario 
+VALUES ('CURPPRUEBAA123457','Roberto', 'López','Guzman','1970-07-28','Orfebreria','25','Oficios', '06700','Venustiano Carranza','CDMX','5514251425','robertolopez@gmail.com','pwd123',2 )
+
+
 INSERT INTO TipoEmpleado
 VALUES ('Doctor'), ('Recepcionista')
 
@@ -48,6 +60,9 @@ VALUES ('07:00:00','08:00:00'),
 	('19:00:00','20:00:00'),
     ('07:00:00','14:00:00')
 
+INSERT INTO Horario 
+VALUES ('14:00:00','20:00:00')
+
 INSERT INTO EstatusCita
 VALUES ('Agendada pendiente de pago'),
 ('Pagada pendiente por atender'),
@@ -58,6 +73,11 @@ VALUES ('Agendada pendiente de pago'),
 ('No acudió')
 
 INSERT INTO Empleado VALUES('CURPPRUEBAA223344','RFC223344',50000,1,14)
+
+INSERT INTO Empleado VALUES('CURPPRUEBAA123457','RFC123457',50000,2,14)
+
+
+
 
 
 
@@ -76,57 +96,100 @@ INSERT INTO Medico VALUES ('CEDPRUEBA223344',1,1)
 INSERT INTO Consultorio VALUES (110,1,3)
 
 INSERT INTO Medicamento
-VALUES('Loratadina', 'LOTEPRUEBA1', 100, 200, '2030-05-28')
+VALUES ('Loratadina','AAAA',100,120,'12/10/2030')
 
-INSERT INTO Factura 
-VALUES ('2025-06-20','Primera cita del sistema','Pagada')
+INSERT INTO Medicamento
+VALUES ('Aspirina','BBBB',200,220,'12/10/2030')
 
-INSERT INTO Factura 
-VALUES ('2025-06-20','Segunda cita del sistema','Pagada')
 
-SELECT * FROM Cita
+INSERT INTO Factura VALUES ('12/06/2024', 'Venta de farmacia', 'Pagada')
 
-INSERT INTO Cita 
-VALUES (1,2,1,'2025-06-28','2025-06-20',1,1,2)
+
+INSERT INTO Recepcionista VALUES(2)
+
+
+INSERT INTO Venta VALUES (1,'12/06/2025','Primer venta del sistema')
+	INSERT INTO Venta VALUES (1,'12/06/2025','Segunda venta del sistema')
+
+
+
+
+	INSERT INTO DetalleMedicamento VALUES (1,1,1)
+	INSERT INTO DetalleMedicamento VALUES (1,2,5)
+	-- venta,medicamento, cantidad
+	INSERT INTO DetalleMedicamento VALUES (2,1,5)
+	INSERT INTO DetalleMedicamento VALUES (2,2,7)
+
+	INSERT INTO DetalleServicio VALUES (1,1,1)
+	INSERT INTO DetalleServicio VALUES (1,3,2)
+	-- venta, cantidad, servicio
+	INSERT INTO DetalleServicio VALUES (2,2,2)
+	INSERT INTO DetalleServicio VALUES (2,5,1)
+
+	--Crear el pago usando la funcion creada
+INSERT INTO Pago VALUES (1,1,'Tarjeta de debito','12/06/25', dbo.obtenerTotalVenta (1),'Exito')
+
+INSERT INTO Pago VALUES (1,2,'Tarjeta de debito','12/06/25', dbo.obtenerTotalVenta (2),'Segunda venta')
+
+
+
+
+--Alta doctores
+INSERT INTO Usuario 
+VALUES ('CURPPRUEBAA654321','Jose', 'Abelardo','Guzman','1970-07-28','Orfebreria','5','Oficios', '06700','Venustiano Carranza','CDMX',
+'5514251425','joseabelardo@gmail.com','pwd123',2 )
+
+INSERT INTO Empleado VALUES('CURPPRUEBAA654321','RFC654321',50000,1,14)
+--ced / idEmpleado / idEspecialidad
+INSERT INTO Medico VALUES ('CEDPRUEBA654321',3,2)
+
+INSERT INTO Usuario 
+VALUES ('CURPPRUEBAA765432','Fernanda', 'Zamudio','Valdez','1978-07-28','Talabarteros','51','Oficios', '06700','Venustiano Carranza','CDMX',
+'5514251425','fernandazamudio@gmail.com','pwd123',2 )
+
+INSERT INTO Empleado VALUES('CURPPRUEBAA765432','RFC765432',50000,1,14)
+--ced / idEmpleado / idEspecialidad
+INSERT INTO Medico VALUES ('CEDPRUEBA765432',4,3)
+
+INSERT INTO Usuario 
+VALUES ('CURPPRUEBAA876543','Julion', 'Alvarez','Valdez','1988-07-28','Talabarteros','51','Oficios', '06700','Venustiano Carranza','CDMX',
+'5514251425','julionalvarez@gmail.com','pwd123',2 )
+
+INSERT INTO Empleado VALUES('CURPPRUEBAA876543','RFC876543',50000,1,14)
+--ced / idEmpleado / idEspecialidad
+INSERT INTO Medico VALUES ('CEDPRUEBA876543',5,4)
+
+INSERT INTO Usuario 
+VALUES ('CURPPRUEBAA987654','Marco', 'Ortega','Madrid','1988-07-28','Alfareros','51','Oficios', '06700','Venustiano Carranza','CDMX',
+'5514251425','marcoortega@gmail.com','pwd123',2 )
+
+INSERT INTO Empleado VALUES('CURPPRUEBAA987654','RFC987654',50000,1,14)
+--ced / idEmpleado / idEspecialidad
+INSERT INTO Medico VALUES ('CEDPRUEBA987654',6,5)
 
 
 INSERT INTO Usuario 
-VALUES ('CURPPRUEBAA445566','Juan', 'Obrador','Peña','1970-08-28','Talabarteros','25','Oficios', '06700','Venustiano Carranza','CDMX','5514251425','juanobrador@gmail.com','pwd123',2 )
+VALUES ('CURPPRUEBAA111222','Sebastian', 'Madrid','Portillo','1988-07-28','Carteros','51','Oficios', '06700','Venustiano Carranza','CDMX',
+'5514251425','sebastianmadrid@gmail.com','pwd123',2 )
 
-INSERT INTO Empleado VALUES('CURPPRUEBAA445566','RFC445566',50000,1,14)
-
-INSERT INTO Medico VALUES ('CEDPRUEBA445566',2,2)
+INSERT INTO Empleado VALUES('CURPPRUEBAA111222','RFC111222',50000,1,14)
+--ced / idEmpleado / idEspecialidad
+INSERT INTO Medico VALUES ('CEDPRUEBA111222',7,6)
 
 
 INSERT INTO Usuario 
-VALUES ('CURPPRUEBAA224466','Miguel', 'Bernard','Carrasco','1970-01-28','Alfareros','25','Oficios', '06700','Venustiano Carranza','CDMX','5514251425','miguelbernard@gmail.com','pwd123',2 )
+VALUES ('CURPPRUEBAA222333','Alma', 'Perez','Parra','1988-07-28','Carteros','5','Oficios', '06700','Venustiano Carranza','CDMX',
+'5514251425','almaperez@gmail.com','pwd123',2 )
 
-INSERT INTO Empleado VALUES('CURPPRUEBAA224466','RFC224466',50000,1,14)
+INSERT INTO Empleado VALUES('CURPPRUEBAA222333','RFC222333',50000,1,15)
+--ced / idEmpleado / idEspecialidad
+INSERT INTO Medico VALUES ('CEDPRUEBA222333',9,2)
 
-INSERT INTO Medico VALUES ('CEDPRUEBA224466',3,2)
 
+INSERT INTO Usuario 
+VALUES ('CURPPRUEBAA333444','Gustavo', 'Obrador','Smith','1998-07-28','Carteros','5','Oficios', '06700','Venustiano Carranza','CDMX',
+'5514251425','gustavoobrador@gmail.com','pwd123',2 )
 
-
---Folio_Cita, ID_Paciente  , ID_Horario , ID_Medico , Fecha_Cita , Fecha_Reservacion, ID_Factura  ,ID_Consultorio  ,ID_EstatusCita  
---Cita en el pasado
-INSERT INTO Cita 
-VALUES (1,1,3,'2024-06-28','2025-06-20',2,1,2)
-
---Cita en mas de 3 meses
-INSERT INTO Cita 
-VALUES (2,3,3,'2027-06-28','2025-06-27',2,1,2)
-
---Cita en menos de 48hrs
-INSERT INTO Cita 
-VALUES (2,3,3,'2025-06-28','2025-06-27',2,1,2)
-
---Cita fuera del horario del doctor
-INSERT INTO Cita 
-VALUES (2,13,3,'2025-06-28','2025-06-20',2,1,2)
-
-INSERT INTO Receta VALUES 
-('2025-06-28','Alergia al polvo','Alergias','Loratadina cada que se presente un evento de alergia',1)
-
-INSERT INTO DetalleReceta VALUES (1,1)
-
-INSERT INTO Pago VALUES (1,'Tarjeta de débito','2025-06-21',700,700,'Pagado')
+INSERT INTO Empleado VALUES('CURPPRUEBAA333444','RFC333444',50000,1,15)
+--ced / idEmpleado / idEspecialidad
+INSERT INTO Medico VALUES ('CEDPRUEBA333444',10,3)

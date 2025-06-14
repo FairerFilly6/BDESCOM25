@@ -55,3 +55,48 @@ as return (
 	group by es.Nombre
 )
 
+CREATE FUNCTION obtenerTotalVenta ( @idVenta INT) RETURNS MONEY AS  
+BEGIN
+	DECLARE @sumaServicios MONEY 
+	DECLARE @sumaMedicamentos MONEY 
+	DECLARE @totalVenta MONEY 
+
+	SELECT @sumaServicios =  SUM(DS.Cantidad * S.Costo) FROM DetalleServicio DS 
+	LEFT JOIN  Servicio S ON DS.ID_Servicio = S.ID_Servicio
+	WHERE DS.ID_Venta = @idVenta
+
+	SELECT @sumaMedicamentos = SUM(DM.Cantidad *M.Precio)  FROM DetalleMedicamento DM
+	LEFT JOIN  Medicamento M ON DM.ID_Medicamento = M.ID_Medicamento
+	WHERE DM.ID_Venta = @idVenta
+
+	SELECT @totalVenta = @sumaMedicamentos + @sumaServicios
+
+	RETURN @totalVenta
+END
+
+CREATE FUNCTION obtenerTotalVentasEspecialidad ( @idEspecialidad INT) RETURNS MONEY AS  
+BEGIN
+	DECLARE @totalVentasEsp MONEY 
+
+	SELECT @totalVentasEsp  = SUM(E.Costo_Consulta) FROM Cita C
+	LEFT JOIN Medico M ON C.ID_Medico = M.ID_Medico
+	LEFT JOIN Especialidad E ON M.ID_Especialidad = E.ID_Especialidad
+	WHERE E.ID_Especialidad = @idEspecialidad
+
+	RETURN @totalVentasEsp
+
+END
+
+
+CREATE FUNCTION obtenerTotalVentasMedicamento ( @idMedicamento INT) RETURNS MONEY AS  
+BEGIN
+	DECLARE @totalVentasMed MONEY 
+
+	SELECT @totalVentasMed = SUM (DM.Cantidad * M.Precio ) FROM DetalleMedicamento DM
+	LEFT JOIN Medicamento M ON DM.ID_Medicamento = M.ID_Medicamento
+	WHERE M.ID_Medicamento = @idMedicamento
+
+	RETURN @totalVentasMed
+
+END
+

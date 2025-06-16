@@ -1,7 +1,6 @@
-
-CREATE DATABASE ClinicaEspecialidadV1
+CREATE DATABASE ClinicaEspecialidadV6
 GO
-USE ClinicaEspecialidadV1
+USE ClinicaEspecialidadV6
 GO
 
 CREATE TABLE TipoUsuario (
@@ -148,28 +147,37 @@ CREATE TABLE Servicio (
 CREATE TABLE Venta (
     ID_Venta INT PRIMARY KEY IDENTITY(1,1),
     ID_Recepcionista INT FOREIGN KEY REFERENCES Recepcionista(ID_Recepcionista),
-    ID_Factura INT FOREIGN KEY REFERENCES Factura(ID_Factura),
     FechaVenta DATE,
     Concepto NVARCHAR(100)
-);
-
-CREATE TABLE DetalleVenta (
-    ID_Venta INT,
-    ID_Medicamento INT,
-    Cantidad INT,
-    ID_Servicio INT,
-    PRIMARY KEY (ID_Venta, ID_Medicamento, ID_Servicio),
-    FOREIGN KEY (ID_Venta) REFERENCES Venta(ID_Venta),
-    FOREIGN KEY (ID_Medicamento) REFERENCES Medicamento(ID_Medicamento),
-    FOREIGN KEY (ID_Servicio) REFERENCES Servicio(ID_Servicio)
 );
 
 CREATE TABLE Pago (
     ID_Pago INT PRIMARY KEY IDENTITY(1,1),
     ID_Factura INT FOREIGN KEY REFERENCES Factura(ID_Factura),
+	ID_Venta INT FOREIGN KEY REFERENCES Venta(ID_Venta),
     Metodo_Pago NVARCHAR(50),
     Fecha_Pago DATE NOT NULL,
-    Monto DECIMAL(10,2),
     Total DECIMAL(10,2),
     Estatus_Pago NVARCHAR(50) NOT NULL
+);
+
+
+
+CREATE TABLE DetalleMedicamento (
+    ID_Venta INT,
+    ID_Medicamento INT,
+    Cantidad INT,
+    PRIMARY KEY (ID_Venta, ID_Medicamento),
+    FOREIGN KEY (ID_Venta) REFERENCES Venta(ID_Venta),
+    FOREIGN KEY (ID_Medicamento) REFERENCES Medicamento(ID_Medicamento),
+
+);
+
+CREATE TABLE DetalleServicio (
+    ID_Venta INT,
+    Cantidad INT,
+    ID_Servicio INT,
+    PRIMARY KEY (ID_Venta, ID_Servicio),
+    FOREIGN KEY (ID_Venta) REFERENCES Venta(ID_Venta),
+    FOREIGN KEY (ID_Servicio) REFERENCES Servicio(ID_Servicio)
 );

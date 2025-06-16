@@ -8,7 +8,7 @@ class Conexion {
     }
 
     private function conectar() {
-        $host = "localhost\MSSQLSERVER2";
+        $host = "DESKTOP-81BAFFF";
         $db = "ClinicaEspecialidadV6";
         $username = "sa";
         $password = "Admin123";

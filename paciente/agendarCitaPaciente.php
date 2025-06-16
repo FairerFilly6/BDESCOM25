@@ -12,7 +12,7 @@
     $especialistas = 'SELECT * FROM Especialistas';
     $stmt = $conn->seleccionar($especialistas);
 
-    $horario = 'SELECT * FROM HorariosDia';
+    $horario = 'SELECT * FROM IntervalosDisponiblesCitas';
     $consultaHorario = $conn->seleccionar($horario);
 
 

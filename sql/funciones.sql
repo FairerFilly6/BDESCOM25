@@ -1,10 +1,4 @@
 
-create function obtenerCitasPendientes ( @fechaBuscada date ) returns table
-as return 
-(
-	select * from CitasMedico where @fechaBuscada=Fecha_Cita
-)
-
 create function obtenerHorarioServicioMedico( @idMedico int ) returns table
 as return (
 	select ho.Inicio_Horario, ho.Fin_Horario from Medico med left join Empleado emp on med.ID_Empleado = emp.ID_Empleado

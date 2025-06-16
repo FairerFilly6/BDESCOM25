@@ -56,7 +56,6 @@ CREATE VIEW FacturacionPorPaciente AS
 		F.Concepto,
 		F.Estatus AS EstatusFactura,
 		PAGO.Metodo_Pago,
-		PAGO.Monto,
 		PAGO.Total,
 		PAGO.Fecha_Pago
 	FROM 

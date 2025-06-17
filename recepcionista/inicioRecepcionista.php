@@ -55,7 +55,7 @@
         
         <ul class="lista-opciones">
             <li class="elemento-opciones">
-                <a href="#">Ver doctores</a>
+                <a href="doctorRecepcionista.php">Ver doctores</a>
             </li>
             <li class="elemento-opciones">
                 <a href="#">Alta de doctor</a>

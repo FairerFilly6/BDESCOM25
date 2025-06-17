@@ -21,14 +21,15 @@
         
         <ul class="lista-opciones">
             <li class="elemento-opciones">
-                <a href="#">Ver pacientes</a>
+                <a href="paciente/mostrarPacienteR.php">Ver pacientes</a>
             </li>
             <li class="elemento-opciones">
-                <a href="#">Alta de pacientes</a>
+                <a href="paciente/CrearCuentaR.php">Alta de pacientes</a>
             </li>
             <li class="elemento-opciones">
-                <a href="#">Baja de pacientes</a>
+                <a href="paciente/modPacienteR.php">Modificar datos de paciente</a>
             </li>
+
 
         </ul>
     </div>
@@ -80,6 +81,21 @@
             <li class="elemento-opciones">
                 <a href="#">Cancelar cita</a>
             </li>
+
+        </ul>
+    </div>
+
+    <div class=" border ">
+        <h3 class="centrar">Ventas</h3>
+        
+        <ul class="lista-opciones">
+            <li class="elemento-opciones">
+                <a href="#">Nueva venta</a>
+            </li>
+            <li class="elemento-opciones">
+                <a href="#">Mostrar venta</a>
+            </li>
+            
 
         </ul>
     </div>

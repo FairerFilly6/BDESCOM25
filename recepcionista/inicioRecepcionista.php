@@ -84,6 +84,34 @@
         </ul>
     </div>
 
+    <div class=" border ">
+        <h3 class="centrar">Venta</h3>
+        
+        <ul class="lista-opciones">
+            <li class="elemento-opciones">
+                <a href="#">Registrar venta</a>
+            </li>
+            <li class="elemento-opciones">
+                <a href="#">Historial de ventas</a>
+            </li>
+
+        </ul>
+    </div>
+
+    <div class=" border ">
+        <h3 class="centrar">Medicamentos</h3>
+        
+        <ul class="lista-opciones">
+            <li class="elemento-opciones">
+                <a href="#">Medicamentos disponibles</a>
+            </li>
+            <li class="elemento-opciones">
+                <a href="#">Alta de medicamentos</a>
+            </li>
+
+        </ul>
+    </div>
+
     <div class="logout centrar">
         <a class="border" href="#">Cerrar sesión</a>
     </div>

@@ -100,6 +100,24 @@
         </ul>
     </div>
 
+    <div class=" border ">
+        <h3 class="centrar">Medicamentos</h3>
+        
+        <ul class="lista-opciones">
+            <li class="elemento-opciones">
+                <a href="#">Nuevo medicamento</a>
+            </li>
+            <li class="elemento-opciones">
+                <a href="#">Mostrar medicamento</a>
+            </li>
+            <li class="elemento-opciones">
+                <a href="#">Modificar medicamento</a>
+            </li>
+            
+
+        </ul>
+    </div>
+
     <div class="logout centrar">
         <a class="border" href="#">Cerrar sesión</a>
     </div>

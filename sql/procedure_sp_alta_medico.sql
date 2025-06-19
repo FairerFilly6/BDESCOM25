@@ -1,11 +1,13 @@
 select * from Medico
-
+select * from Empleado
 select * from Usuario
 
 grant exec on SP_ALTA_MEDICO to userapela
 grant exec on SP_ALTA_RECEPCIONISTA to userapela
 
 select * from Especialidad
+
+select * from Horario
 
 create procedure SP_ALTA_MEDICO
 	@CURP NVARCHAR(18),
@@ -23,14 +25,33 @@ create procedure SP_ALTA_MEDICO
     @Email NVARCHAR(100),
     @Pwd NVARCHAR(30),
 	@Cedula_Pro NVARCHAR(18),
-	@tipoEspedialidad int
+	@tipoEspedialidad int,
+	@RFC NVARCHAR(13),
+	@Sueldo DECIMAL(10,2),
+	@idHorario int
 as
 	begin
-		insert into Usuario
-			values (@CURP, @Nombre, @Apellido_P, @Apellido_M, @Fecha_Nac, @Calle, @Numero, @Colonia, @Codig_P, @Ciudad, @Estado, @Telefono, @Email, @Pwd, 2);
 
-		insert into Medico (Cedula_Pro, ID_Empleado, ID_Especialidad)
-			values ( @Cedula_Pro, 1,  @tipoEspedialidad);
+		begin tran;
+			begin try;
+				insert into Usuario
+					values (@CURP, @Nombre, @Apellido_P, @Apellido_M, @Fecha_Nac, @Calle, @Numero, @Colonia, @Codig_P, @Ciudad, @Estado, @Telefono, @Email, @Pwd, 2);
+
+				insert into Empleado (CURP, RFC, Sueldo, ID_TIpoEmpleado, ID_Horario)
+					values ( @CURP, @RFC, @Sueldo, 1, @idHorario )
+
+				declare @idEmpleado int;
+
+				set @idEmpleado = (select ID_Empleado from Empleado where CURP = @CURP);
+
+				insert into Medico (Cedula_Pro, ID_Empleado, ID_Especialidad)
+					values ( @Cedula_Pro, @idEmpleado,  @tipoEspedialidad);
+
+				commit;
+			end try
+			begin catch
+				rollback transaction;
+			end catch;
 		-- 2--empleado 1--paciente select * from TipoUsuario
 		-- 1-doctor 2-recpionista select * from TipoEmpleado
 	end

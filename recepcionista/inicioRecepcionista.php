@@ -93,7 +93,7 @@
                 <a href="venta/CrearVenta.php">Nueva venta</a>
             </li>
             <li class="elemento-opciones">
-                <a href="venta/mostrarVenta.php">Mostrar venta</a>
+                <a href="venta/mostrarVentas.php">Mostrar venta</a>
             </li>
             
 

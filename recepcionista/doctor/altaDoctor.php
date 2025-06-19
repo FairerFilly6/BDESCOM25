@@ -14,6 +14,14 @@
     $sqlEspecialidad = "select * from Especialidad";
     $stmtEspecialidades= $conn->seleccionar($sqlEspecialidad);
 
+    $sqlHorario = "select
+                    ID_Horario,
+                    FORMAT( cast(Inicio_Horario as datetime), 'hh:mm tt') AS Inicio,
+                    FORMAT( cast(Fin_Horario as datetime), 'hh:mm tt') AS Fin
+                from Horario where ID_Horario in (14, 15)";
+
+    $stmtHorario= $conn->seleccionar($sqlHorario);
+
     if ( !empty($_POST) ) {
 
         $curp = $_POST['curp'];
@@ -32,13 +40,21 @@
         $pwd = $_POST['Pwd'];
         $cedPro = $_POST['ced_pro'];
         $especialidad= $_POST['especialidad'];
+        $rfc = $_POST['Rfc'];
+        $sueldo = $_POST['Sueldo'];
+        $horario= $_POST['horario'];
 
-        $sqlProcedure = ' exec SP_ALTA_MEDICO ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?';
+        $sqlProcedure = ' exec SP_ALTA_MEDICO ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?';
         $paramAlta =
-        array($curp,$nombre,$apPat,$apMat,$fechaNac,$calle,$numero,$colonia,$cp,$ciudad,$estado,$telefono,$email,$pwd,$cedPro,$especialidad);
+        array($curp, $nombre, $apPat, $apMat, $fechaNac,
+                $calle, $numero, $colonia, $cp, $ciudad, $estado,
+                $telefono, $email, $pwd, $cedPro,$especialidad, $rfc, $sueldo, $horario);
+
         $exitoUsuario = $conn->insertar($sqlProcedure,$paramAlta);
         if ($exitoUsuario) {
-            //me da info de la variable     var_dump($exitoUsuario);
+            echo "<script>alert('Se ha registrado con éxito');</script>";
+        } else {
+            echo "<script>alert('No se ha podido registrar');</script>";
         }
     } else {
 
@@ -128,6 +144,27 @@
                             foreach ($stmtEspecialidades as $row) {
                                 echo '<option value ="'.$row['ID_Especialidad'] .'" >';
                                 echo $row['Nombre']  ;
+                                echo '</option>';
+                            }     
+                        }
+                    ?>
+                </select>
+
+                <label for="rfc">RFC</label>
+                <input type="text" name="Rfc" required>
+
+                <label for="sueldo">SUELDO</label>
+                <input type="text" name="Sueldo" required>
+
+                <label for="horario">Horario de Trabajo</label>
+                <select name="horario" id="horario" required>
+                    <option value="" disabled selected >Seleccione un Horario</option>
+                    <?php
+                        if($stmtHorario){
+                            var_dump($stmtHorario);
+                            foreach ($stmtHorario as $row) {
+                                echo '<option value ="'.$row['ID_Horario'] .'" >';
+                                echo $row['Inicio'] . ' - ' .$row['Fin'];
                                 echo '</option>';
                             }     
                         }

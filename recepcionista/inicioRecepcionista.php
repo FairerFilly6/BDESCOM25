@@ -39,10 +39,10 @@
         
         <ul class="lista-opciones">
             <li class="elemento-opciones">
-                <a href="#">Ver recepcionistas</a>
+                <a href="recepcionista/verRecepcionista.php">Ver recepcionistas</a>
             </li>
             <li class="elemento-opciones">
-                <a href="#">Alta de recepcionistas</a>
+                <a href="recepcionista/altaRecepcionista.php">Alta de recepcionistas</a>
             </li>
             <li class="elemento-opciones">
                 <a href="#">Baja de recepcionistas</a>

@@ -129,7 +129,7 @@
                 <a href="servicio/mostrarServicios.php">Mostrar servicios</a>
             </li>
             <li class="elemento-opciones">
-                <a href="#">Modificar servicios</a>
+                <a href="servicio/modServicio.php">Modificar servicios</a>
             </li>
             
 

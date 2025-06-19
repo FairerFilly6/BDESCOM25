@@ -66,7 +66,7 @@
         }
 
         if ($_POST['accion'] === 'confirmar') {
-            // var_dump($_SESSION['email']) ;
+         
             if (empty($_SESSION['carrito']['medicamentos']) && empty($_SESSION['carrito']['servicios']) ) {
                 echo "<script>alert('No es posible crear ventas vacias');</script>";
             }else{
@@ -88,10 +88,7 @@
                 if($exitoVenta){
                     //si la venta procede obtenemos el id de esta
                     $idVenta = $conn->lastInsertId();
-                    // echo "<br>";
-                    // echo "insercion realizada";
-                    // echo "<br>";
-                    // echo "idventa : ".$idVenta;
+                    
 
                     
                     //iteramos sobre el carrito en medicamentos para insertarlo en detalle medicamento
@@ -126,10 +123,7 @@
                     if (!$exitoInsercionPago) {
                         exit;
                     }
-                    else{
-                        echo "lo fakin logramos";
-                    }
-
+                    
                 }
                 
                 

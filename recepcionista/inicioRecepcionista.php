@@ -59,7 +59,7 @@
                 <a href="doctor/doctorRecepcionista.php">Ver doctores</a>
             </li>
             <li class="elemento-opciones">
-                <a href="#">Alta de doctor</a>
+                <a href="doctor/altaDoctor.php">Alta de doctor</a>
             </li>
             <li class="elemento-opciones">
                 <a href="#">Baja de doctor</a>

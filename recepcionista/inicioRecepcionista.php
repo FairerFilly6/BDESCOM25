@@ -135,6 +135,16 @@
 
         </ul>
     </div>
+    <div class=" border ">
+        <h3 class="centrar">Pagos</h3>
+        
+        <ul class="lista-opciones">
+            <li class="elemento-opciones">
+                <a href="pago/mostrarPagos.php">Ver pagos</a>
+            </li>
+
+        </ul>
+    </div>
 
     <div class="logout centrar">
         <a class="border" href="#">Cerrar sesión</a>

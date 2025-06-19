@@ -56,7 +56,7 @@
         
         <ul class="lista-opciones">
             <li class="elemento-opciones">
-                <a href="#">Ver doctores</a>
+                <a href="doctor/doctorRecepcionista.php">Ver doctores</a>
             </li>
             <li class="elemento-opciones">
                 <a href="#">Alta de doctor</a>
@@ -94,6 +94,24 @@
             </li>
             <li class="elemento-opciones">
                 <a href="#">Mostrar venta</a>
+            </li>
+            
+
+        </ul>
+    </div>
+
+    <div class=" border ">
+        <h3 class="centrar">Medicamentos</h3>
+        
+        <ul class="lista-opciones">
+            <li class="elemento-opciones">
+                <a href="#">Nuevo medicamento</a>
+            </li>
+            <li class="elemento-opciones">
+                <a href="#">Mostrar medicamento</a>
+            </li>
+            <li class="elemento-opciones">
+                <a href="#">Modificar medicamento</a>
             </li>
             
 

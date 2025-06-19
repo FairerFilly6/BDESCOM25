@@ -8,10 +8,17 @@ class Conexion {
     }
 
     private function conectar() {
-        $host = "localhost\MSSQLSERVER2";
+        /*
+        $host = "DESKTOP-81BAFFF";
         $db = "ClinicaEspecialidadV6";
         $username = "sa";
         $password = "Admin123";
+        */
+
+        $host = "LAPTOP-7AU5T3D0";
+        $db = "ClinicaEspecialidadV6";
+        $username = "userapela";
+        $password = "userapela";
 
         try {
             $this->conn = new PDO("sqlsrv:Server=$host;Database=$db", $username, $password);

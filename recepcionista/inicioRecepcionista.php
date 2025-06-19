@@ -90,10 +90,10 @@
         
         <ul class="lista-opciones">
             <li class="elemento-opciones">
-                <a href="#">Nueva venta</a>
+                <a href="venta/CrearVenta.php">Nueva venta</a>
             </li>
             <li class="elemento-opciones">
-                <a href="#">Mostrar venta</a>
+                <a href="venta/mostrarVenta.php">Mostrar venta</a>
             </li>
             
 

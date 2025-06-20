@@ -76,7 +76,7 @@
                 <a href="#">Ver citas</a>
             </li>
             <li class="elemento-opciones">
-                <a href="#">Alta de cita</a>
+                <a href="cita/altaCita.php">Alta de cita</a>
             </li>
             <li class="elemento-opciones">
                 <a href="#">Cancelar cita</a>

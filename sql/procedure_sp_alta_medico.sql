@@ -1,13 +1,13 @@
 select * from Medico
 select * from Empleado
 select * from Usuario
+select * from Cita
+select * from Factura
+select * from Consultorio
+select * from EstatusCita
 
 grant exec on SP_ALTA_MEDICO to userapela
 grant exec on SP_ALTA_RECEPCIONISTA to userapela
-
-select * from Especialidad
-
-select * from Horario
 
 create procedure SP_ALTA_MEDICO
 	@CURP NVARCHAR(18),

@@ -49,7 +49,7 @@ as return (
 	group by es.Nombre
 )
 
-CREATE FUNCTION obtenerTotalVenta ( @idVenta INT) RETURNS MONEY AS  
+create FUNCTION obtenerTotalVenta ( @idVenta INT) RETURNS MONEY AS  
 BEGIN
 	DECLARE @sumaServicios MONEY 
 	DECLARE @sumaMedicamentos MONEY 
@@ -67,6 +67,8 @@ BEGIN
 
 	RETURN @totalVenta
 END
+
+select dbo.obtenerTotalVenta(1);
 
 CREATE FUNCTION obtenerTotalVentasEspecialidad ( @idEspecialidad INT) RETURNS MONEY AS  
 BEGIN

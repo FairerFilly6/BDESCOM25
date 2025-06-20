@@ -105,13 +105,13 @@
         
         <ul class="lista-opciones">
             <li class="elemento-opciones">
-                <a href="#">Nuevo medicamento</a>
+                <a href="medicamento/crearMedicamento.php">Nuevo medicamento</a>
             </li>
             <li class="elemento-opciones">
-                <a href="#">Mostrar medicamento</a>
+                <a href="medicamento/mostrarMedicamentos.php">Mostrar medicamento</a>
             </li>
             <li class="elemento-opciones">
-                <a href="#">Modificar medicamento</a>
+                <a href="medicamento/modMedicamento.php">Modificar medicamento</a>
             </li>
             
 

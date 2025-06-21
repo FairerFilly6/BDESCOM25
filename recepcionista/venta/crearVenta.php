@@ -122,6 +122,8 @@
 
                     if (!$exitoInsercionPago) {
                         exit;
+                    }else{
+                          header('Location: mostrarVentas.php');
                     }
                     
                 }

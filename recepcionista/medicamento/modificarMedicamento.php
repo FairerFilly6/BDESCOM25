@@ -19,8 +19,6 @@
         $resMedicamento = $conn->seleccionar($consultaServicio,$paramMedicamento);
         $rowMedicamento = $resMedicamento->fetch(PDO::FETCH_ASSOC);
 
-        var_dump($rowMedicamento);
-        
         
     }else{
          header('Location: index.php');

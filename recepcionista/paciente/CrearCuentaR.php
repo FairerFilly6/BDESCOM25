@@ -43,7 +43,7 @@
         $exitoPaciente = $conn->insertar($insercionPaciente,$paramPaciente);
 
         if ($exitoPaciente && $exitoUsuario) {
-            header('Location: /recepcionista/inicioRecepcionista.php');
+            header('Location: ../inicioRecepcionista.php');
         }
     }
 ?>

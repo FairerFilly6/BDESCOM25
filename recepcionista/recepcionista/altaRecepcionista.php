@@ -48,6 +48,7 @@
         $exitoUsuario = $conn->insertar($sqlProcedure,$paramAlta);
         if ($exitoUsuario) {
             echo "<script>alert('Se ha registrado con éxito');</script>";
+            header('Location: ../inicioRecepcionista.php');
         }
     }
 

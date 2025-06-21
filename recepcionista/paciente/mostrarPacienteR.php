@@ -17,7 +17,8 @@
             P.Alergia AS Alergia,
             P.Estatura AS Estatura,
             P.Peso AS Peso,
-            P.Tipo_Sangre AS TipoSangre
+            P.Tipo_Sangre AS TipoSangre,
+            U.Estatus AS Estatus
             FROM Paciente P
             LEFT JOIN Usuario U ON P.CURP = U.CURP";
 
@@ -60,6 +61,7 @@
                 <th>Estatura</th>
                 <th>Peso</th>
                 <th>Tipo de Sangre</th>
+                <th>Estatus</th>
             </tr>
         </thead>
         <tbody>
@@ -79,6 +81,7 @@
                 echo "<td>" . $row['Estatura'] . "</td>";
                 echo "<td>" . $row['Peso'] . "</td>";
                 echo "<td>" . $row['TipoSangre'] . "</td>";
+                echo "<td>" . $row['Estatus'] . "</td>";
                 echo "</tr>";
             }
         }

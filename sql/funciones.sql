@@ -49,26 +49,30 @@ as return (
 	group by es.Nombre
 )
 
-create FUNCTION obtenerTotalVenta ( @idVenta INT) RETURNS MONEY AS  
+CREATE FUNCTION obtenerTotalVenta ( @idVenta INT) 
+RETURNS MONEY 
+AS  
 BEGIN
-	DECLARE @sumaServicios MONEY 
-	DECLARE @sumaMedicamentos MONEY 
+	DECLARE @sumaServicios MONEY = 0
+	DECLARE @sumaMedicamentos MONEY = 0
 	DECLARE @totalVenta MONEY 
 
-	SELECT @sumaServicios =  SUM(DS.Cantidad * S.Costo) FROM DetalleServicio DS 
-	LEFT JOIN  Servicio S ON DS.ID_Servicio = S.ID_Servicio
+	SELECT @sumaServicios = SUM(DS.Cantidad * S.Costo) 
+	FROM DetalleServicio DS 
+	LEFT JOIN Servicio S ON DS.ID_Servicio = S.ID_Servicio
 	WHERE DS.ID_Venta = @idVenta
 
-	SELECT @sumaMedicamentos = SUM(DM.Cantidad *M.Precio)  FROM DetalleMedicamento DM
-	LEFT JOIN  Medicamento M ON DM.ID_Medicamento = M.ID_Medicamento
+	SELECT @sumaMedicamentos = SUM(DM.Cantidad * M.Precio)  
+	FROM DetalleMedicamento DM
+	LEFT JOIN Medicamento M ON DM.ID_Medicamento = M.ID_Medicamento
 	WHERE DM.ID_Venta = @idVenta
 
-	SELECT @totalVenta = @sumaMedicamentos + @sumaServicios
+	SELECT @totalVenta = ISNULL(@sumaMedicamentos, 0) + ISNULL(@sumaServicios, 0)
 
 	RETURN @totalVenta
 END
 
-select dbo.obtenerTotalVenta(1);
+
 
 CREATE FUNCTION obtenerTotalVentasEspecialidad ( @idEspecialidad INT) RETURNS MONEY AS  
 BEGIN

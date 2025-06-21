@@ -79,7 +79,7 @@
                 <a href="cita/altaCita.php">Alta de cita</a>
             </li>
             <li class="elemento-opciones">
-                <a href="#">Cancelar cita</a>
+                <a href="cita/bajaCita.php">Cancelar cita</a>
             </li>
 
         </ul>

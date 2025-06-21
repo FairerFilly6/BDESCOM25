@@ -73,7 +73,7 @@
         
         <ul class="lista-opciones">
             <li class="elemento-opciones">
-                <a href="#">Ver citas</a>
+                <a href="cita/verCita.php">Ver citas</a>
             </li>
             <li class="elemento-opciones">
                 <a href="cita/altaCita.php">Alta de cita</a>

@@ -19,18 +19,26 @@
             left join Usuario u on e.CURP = u.CURP where u.CURP is not null and u.Estatus<>'Inactivo'";
 
     $stmtMedico = $conn->seleccionar($sqlMedico);
+        $message=" ";
     if ( !empty($_POST) ) {
+        try {
+            $medico = $_POST['Medico'];
 
-        $recepcionista = $_POST['Recepcionista'];
+            $sqlUpdate = " update Usuario set Estatus='Inactivo' where CURP=? ";
 
-        $sqlUpdate = " update Usuario set Estatus='Inactivo' where CURP=? ";
-
-        $exitoUsuario = $conn->insertar($sqlUpdate,array($recepcionista));
-        if ($exitoUsuario) {
-            echo "<script>alert('Se ha dado de baja con éxito');</script>";
-        } else {
-            echo "<script>alert('No se ha dado de baja con éxito');</script>";
+            $exitoUsuario = $conn->insertar($sqlUpdate,array($medico));
+            if ($exitoUsuario) {
+                echo "<script>alert('Se ha dado de baja con éxito');</script>";
+            } else {
+                echo "<script>alert('No se ha dado de baja con éxito');</script>";
+            }
+        } catch ( PDOException $e) {
+            $parts = explode("]",$e->getMessage());
+            $end = end($parts);
+            $message = trim($end);
+            //echo "<script>alert('".$message."');</script>";
         }
+        
     }
 
 
@@ -79,6 +87,12 @@
 
                 
             </fieldset>
+            <?php
+                if ($message!=" ") {
+                    echo '<p class="alerta rojo">'.$message.'</p>';
+                }
+            ?>
+            
 
             
             <button type="submit" class="boton-confirmar">Dar de Baja</button>

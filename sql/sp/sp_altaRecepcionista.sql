@@ -22,7 +22,7 @@ as
 	begin tran;
 		begin try
 			insert into Usuario
-				values (@CURP, @Nombre, @Apellido_P, @Apellido_M, @Fecha_Nac, @Calle, @Numero, @Colonia, @Codig_P, @Ciudad, @Estado, @Telefono, @Email, @Pwd, 2);
+				values (@CURP, @Nombre, @Apellido_P, @Apellido_M, @Fecha_Nac, @Calle, @Numero, @Colonia, @Codig_P, @Ciudad, @Estado, @Telefono, @Email, @Pwd, 2, 'Activo');
 
 			insert into Empleado ( CURP, RFC, Sueldo, ID_TipoEmpleado, ID_Horario )
 				values (@CURP, @RFC, @Sueldo, 2, @idHorario);
@@ -42,5 +42,4 @@ as
 		-- 1-doctor 2-recpionista select * from TipoEmpleado
 	end
 
-	GO
 	grant exec on SP_ALTA_RECEPCIONISTA to --user

@@ -27,9 +27,9 @@
 
         $exitoUsuario = $conn->insertar($sqlUpdate,array($recepcionista));
         if ($exitoUsuario) {
-            echo "<script>alert('Se ha dado de baja con éxito');</script>";
+            echo "<script>alert('Se ha dado de baja con éxito'); window.location.href = 'bajaRecepcionista.php';</script>";
         } else {
-            echo "<script>alert('No se ha dado de baja con éxito');</script>";
+            echo "<script>alert('No se ha dado de baja con éxito'); window.location.href = 'bajaRecepcionista.php';</script>";
         }
     }
 
@@ -45,7 +45,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear cuenta</title>
+    <title>Baja Recepcionista</title>
     <link rel="stylesheet" href="../../css/styles.css">
     
 

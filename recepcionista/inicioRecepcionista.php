@@ -45,7 +45,7 @@
                 <a href="recepcionista/altaRecepcionista.php">Alta de recepcionistas</a>
             </li>
             <li class="elemento-opciones">
-                <a href="#">Baja de recepcionistas</a>
+                <a href="recepcionista/bajaRecepcionista.php">Baja de recepcionistas</a>
             </li>
 
         </ul>
@@ -62,7 +62,7 @@
                 <a href="doctor/altaDoctor.php">Alta de doctor</a>
             </li>
             <li class="elemento-opciones">
-                <a href="#">Baja de doctor</a>
+                <a href="doctor/bajaDoctor.php">Baja de doctor</a>
             </li>
 
         </ul>

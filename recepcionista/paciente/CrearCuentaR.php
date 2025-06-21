@@ -32,7 +32,7 @@
         $alergia = $_POST['Alergia'];
         $padecimientos = $_POST['Padecimientos'];
 
-        $insercionUsuarios = "INSERT INTO Usuario VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        $insercionUsuarios = "INSERT INTO Usuario VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,'Activo')";
         $paramUsuarios = array($curp,$nombre, $apPat, $apMat, $fechaNac, $calle,
                             $numero,$colonia,$cp, $ciudad, $estado, $telefono, $email, $pwd,1);
 

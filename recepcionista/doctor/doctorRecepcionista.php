@@ -11,7 +11,7 @@
     $conn = new Conexion();
     $sql = 
 
-    "select med.ID_Medico as ID, us.CURP, us.Nombre+' '+Apellido_P+' '+Apellido_M as Nombre, esp.Nombre as Especialidad, Telefono, Email, emp.Sueldo
+    "select med.ID_Medico as ID, us.CURP, us.Nombre+' '+Apellido_P+' '+Apellido_M as Nombre, esp.Nombre as Especialidad, Telefono, Email, emp.Sueldo, us.Estatus
     
     from Medico med left join Empleado emp on med.ID_Empleado = emp.ID_Empleado
     left join Usuario us on us.CURP = emp.CURP
@@ -52,6 +52,7 @@
                 <th>TELEFONO</th>
                 <th>EMAIL</th>
                 <th>SUELDO</th>
+                <th>ESTATUS</th>
             </tr>
         </thead>
 
@@ -68,6 +69,7 @@
                 echo "<td>" . $row['Telefono'] . "</td>";
                 echo "<td>" . $row['Email'] . "</td>";
                 echo "<td>" . $row['Sueldo'] . "</td>";
+                echo "<td>" . $row['Estatus'] . "</td>";
                 echo "</tr>";
             }
         }

@@ -133,11 +133,12 @@
     <h2>Comprobacion de cita</h2>
 
     <?php
-        $errores = '<p class="alerta rojo">';
         if (!$citaDisponible) {
+            $errores = '<p class="alerta rojo">';
+            
 
             if (!$validezFecha) $errores = $errores.'- Ingrese una fecha valida'.'<br>';
-            
+                
             if (!$validez48hrs) $errores = $errores.'- No se pueden reservar citas con menos de 48hrs de anticipacion'.'<br>';
 
             if (!$validez3meses) $errores = $errores.'- No se pueden reservar citas con más de 3 meses de antelación'.'<br>';
@@ -151,19 +152,19 @@
             echo $errores.'</p>';
 
             echo '<a href="altaCita.php">Buscar otra cita</a>';
-        } else {
-            echo '<h3 class="alerta verde"> La cita está disponible </h3>
-                <form method="post" action="crearCita.php">
+        } else { ?>
+            <h3 class="alerta verde"> La cita está disponible </h3>
+
+                <form method="POST" action="crearCita.php">
                     <!-- Reenviamos los datos ocultos -->
-                    <input type="hidden" name="Paciente" value="<?= htmlspecialchars($paciente) ?>">
+                    <input type="hidden" name="Paciente" value="<?= htmlspecialchars($paciente); ?>">
                     <input type="hidden" name="Especialista" value="<?= htmlspecialchars($especialista) ?>">
                     <input type="hidden" name="Fecha" value="<?= htmlspecialchars($fecha) ?>">
                     <input type="hidden" name="Horario" value="<?= htmlspecialchars($horario) ?>">
                     <input type="hidden" name="confirmar" value="true">
                     <button type="submit" class="boton-confirmar">Confirmar cita</button>
-                </form>';
-        }
-    ?>
+                </form>
+    <?php } ?>
 
 
     <div class="logout centrar">

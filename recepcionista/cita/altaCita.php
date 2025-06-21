@@ -31,26 +31,6 @@
 
     $stmtHorario= $conn->seleccionar($sqlHorario);
 
-    if ( !empty($_POST) ) {
-
-        $paciente = $_POST['Paciente'];
-        $especialista = $_POST['Especialista'];
-        $fecha = $_POST['Fecha'];
-        $horario = $_POST['Horario'];
-
-        $sqlProcedure =
-            '';
-        $paramAlta =
-            array($curp, $nombre, $apPat, $apMat, $fechaNac,
-                $calle, $numero, $colonia, $cp, $ciudad, $estado,
-                $telefono, $email, $pwd, $rfc, $sueldo, $horario);
-
-        $exitoUsuario = $conn->insertar($sqlProcedure,$paramAlta);
-        if ($exitoUsuario) {
-            echo "<script>alert('Se ha registrado con éxito');</script>";
-        }
-    }
-
 
     //$resConsulta = $conn->seleccionar($sql);
     

@@ -19,6 +19,8 @@
             'SELECT U.Email AS Email FROM Paciente P
                     INNER JOIN Usuario U ON P.CURP = U.CURP
                     WHERE P.ID_Paciente = ?';
+        var_dump($paciente);
+
         $stmtEmailPaciente = $conn->seleccionar($sqlEmailPaciente, array($paciente));
 
         $paramsConsultaID = $stmtEmailPaciente->fetch(PDO::FETCH_ASSOC);
@@ -34,6 +36,7 @@
             $fechaCita = $_POST['Fecha'];
             $fechaReservacion = date("Y-m-d");
             $idhorario = $_POST['Horario'];
+            $montoDevuelto = 0.0;
             $idConsultorio = 1;
             $estatusCita = 1;
 
@@ -55,11 +58,11 @@
                     // $idFactura = $resultadoFactura['ID'];
                     $idFactura = $conn->lastInsertId();
 
-                    $insertarCita = "INSERT INTO Cita VALUES (?,?,?,?,?,?,?,?)";
-                    $paramsCita = array($paciente,$idhorario,$especialista,$fechaCita,$fechaReservacion,$idFactura,$idConsultorio,$estatusCita);
+                    $insertarCita = "INSERT INTO Cita VALUES (?,?,?,?,?,?,?,?,?)";
+                    $paramsCita = array($paciente,$idhorario,$especialista,$fechaCita,$fechaReservacion,$idFactura,$idConsultorio,$estatusCita,$montoDevuelto);
                     $insercionCita = $conn->insertar($insertarCita,$paramsCita);
                     if ($insercionCita) {
-                         header("Location: mostrarCitasPaciente.php");
+                         header("Location: altaCita.php");
                     }
 
                 

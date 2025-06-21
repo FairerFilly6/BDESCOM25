@@ -23,7 +23,8 @@ CREATE TABLE Usuario (
     Telefono NVARCHAR(15) NOT NULL,
     Email NVARCHAR(100) NOT NULL UNIQUE ,
     Pwd NVARCHAR(30) NOT NULL,
-    ID_TipoUsuario INT FOREIGN KEY REFERENCES TipoUsuario(ID_TipoUsuario)
+    ID_TipoUsuario INT FOREIGN KEY REFERENCES TipoUsuario(ID_TipoUsuario),
+    Estatus NVARCHAR(10) NOT NULL DEFAULT 'Activo'
 );
 
 CREATE TABLE Paciente (
@@ -106,7 +107,7 @@ CREATE TABLE Cita (
     ID_Factura INT FOREIGN KEY REFERENCES Factura(ID_Factura),
     ID_Consultorio INT FOREIGN KEY REFERENCES Consultorio(ID_Consultorio),
     ID_EstatusCita INT FOREIGN KEY REFERENCES EstatusCita (ID_EstatusCita),
-
+    Monto_Devuelto MONEY NOT NULL DEFAULT 0,
 	CONSTRAINT UQ_HorarioConsulta_Fecha UNIQUE (ID_Horario, ID_Medico, Fecha_Cita)
 );
 

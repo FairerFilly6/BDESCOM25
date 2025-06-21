@@ -16,7 +16,8 @@
         Telefono,
         RFC,
         Sueldo,
-        format ( cast( Inicio_Horario as datetime ), 'hh:mm tt' )+' - '+format ( cast( Fin_Horario as datetime ), 'hh:mm tt' ) as Horario
+        format ( cast( Inicio_Horario as datetime ), 'hh:mm tt' )+' - '+format ( cast( Fin_Horario as datetime ), 'hh:mm tt' ) as Horario,
+        u.Estatus
     from Recepcionista r left join Empleado e on r.ID_Empleado = e.ID_Empleado
         left join Usuario u on e.CURP = u.CURP
         left join Horario h on e.ID_Horario = h.ID_Horario
@@ -58,6 +59,7 @@
                 <th>RFC</th>
                 <th>SUELDO</th>
                 <th>HORARIO</th>
+                <th>ESTATUS</th>
             </tr>
         </thead>
 
@@ -75,6 +77,7 @@
                 echo "<td>" . $row['RFC'] . "</td>";
                 echo "<td>" . $row['Sueldo'] . "</td>";
                 echo "<td>" . $row['Horario'] . "</td>";
+                echo "<td>" . $row['Estatus'] . "</td>";
                 echo "</tr>";
             }
         }

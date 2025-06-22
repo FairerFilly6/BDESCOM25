@@ -76,7 +76,7 @@
     </div>
 
     <div class="logout centrar">
-        <a class="border" href="../inicioRecepcionista.php">Regresar al menú principal</a>
+        <a class="border" href="crearVenta.php">Regresar</a>
     </div>
     
     <div class="logout centrar">

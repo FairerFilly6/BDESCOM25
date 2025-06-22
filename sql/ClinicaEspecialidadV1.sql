@@ -102,7 +102,7 @@ CREATE TABLE Cita (
     ID_Paciente INT FOREIGN KEY REFERENCES Paciente(ID_Paciente),
 	ID_Horario INT FOREIGN KEY References Horario(ID_Horario),
 	ID_Medico INT FOREIGN KEY References Medico(ID_Medico),
-    Fecha_Cita DATE NOT NULL,
+    Fecha_Cita DATETIME NOT NULL,
     Fecha_Reservacion DATE NOT NULL,
     ID_Factura INT FOREIGN KEY REFERENCES Factura(ID_Factura),
     ID_Consultorio INT FOREIGN KEY REFERENCES Consultorio(ID_Consultorio),

@@ -19,16 +19,19 @@
     <div class="border ">
         <ul class="lista-opciones">
             <li class="elemento-opciones">
-                <a href="#">Ver citas</a>
+                <a href="mostrarCitasDoctor.php">Ver citas</a>
             </li>
             <li class="elemento-opciones">
-                <a href="#">Ver datos de pacientes</a>
+                <a href="verDatosPacientes.php">Ver datos de pacientes</a>
             </li>
             <li class="elemento-opciones">
-                <a href="#">Cancelar cita</a>
+                <a href="cancelarCitaDoctor.php">Cancelar cita</a>
             </li>
             <li class="elemento-opciones">
-                <a href="#">Crear receta</a>
+                <a href="crearReceta.php">Crear receta</a>
+            </li>
+            <li class="elemento-opciones">
+                <a href="mostrarRecetas.php">Mostrar las recetas generadas</a>
             </li>
             
         </ul>

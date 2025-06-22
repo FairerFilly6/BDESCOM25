@@ -19,7 +19,7 @@
     <div class="border ">
         <ul class="lista-opciones">
             <li class="elemento-opciones">
-                <a href="#">Ver citas</a>
+                <a href="mostrarCitasDoctor.php">Ver citas</a>
             </li>
             <li class="elemento-opciones">
                 <a href="#">Ver datos de pacientes</a>

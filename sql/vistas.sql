@@ -31,7 +31,7 @@ create view HistorialCitasPaciente as
                     Cit.Fecha_Reservacion AS FechaRes, 
                     Con.Numero AS NumConsultorio,
                     Con.Piso AS PisoConsultorio,
-                    Fac.Estatus AS Estatus
+                    EC.EstatusCita AS Estatus
                 FROM Cita Cit
                 LEFT JOIN Medico Med ON Cit.ID_Medico = Med.ID_Medico
                 LEFT JOIN Empleado Emp ON Med.ID_Empleado = Emp.ID_Empleado
@@ -39,7 +39,7 @@ create view HistorialCitasPaciente as
                 LEFT JOIN Horario Ho ON Cit.ID_Horario = Ho.ID_Horario
                 LEFT JOIN Especialidad Esp ON Med.ID_Especialidad = Esp.ID_Especialidad
                 LEFT JOIN Consultorio Con ON Cit.ID_Consultorio = Con.ID_Consultorio
-                LEFT JOIN Factura Fac ON Cit.ID_Factura = Fac.ID_Factura
+				LEFT JOIN EstatusCita EC ON Cit.ID_EstatusCita = EC.ID_EstatusCita
 
 CREATE VIEW Especialistas AS
 	SELECT M.ID_Medico AS ID, CONCAT(U.nombre,' ',U.Apellido_P) AS Nombre, E.Nombre AS Especialidad, E.Costo_Consulta AS Costo

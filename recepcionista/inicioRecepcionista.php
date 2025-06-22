@@ -168,7 +168,7 @@
                 <a href="medicamento/mostrarMedicamentos.php">Medicamentos disponibles</a>
             </li>
             <li class="elemento-opciones">
-                <a href="medicamento/crearMedicamento">Alta de medicamentos</a>
+                <a href="medicamento/crearMedicamento.php">Alta de medicamentos</a>
             </li>
 
         </ul>

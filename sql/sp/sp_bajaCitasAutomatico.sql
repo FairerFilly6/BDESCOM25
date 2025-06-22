@@ -1,13 +1,9 @@
 
-select cast( Fecha_Reservacion as datetime ) as FR from Cita
-
-select * from EstatusCita
-
 ALTER PROCEDURE CancelacionFaltaDePago 
 AS 
 BEGIN
     UPDATE cita SET cita.ID_EstatusCita = 3
-    select * FROM 
+    FROM 
 		Cita cita JOIN Horario horario ON cita.ID_Horario = horario.ID_Horario
     WHERE 
         ID_EstatusCita = 1 and

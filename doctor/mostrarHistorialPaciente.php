@@ -11,6 +11,15 @@
         
     $conn = new Conexion();
 
+    $consultaIdMed = "SELECT M.ID_Medico AS id
+            FROM Medico M
+            LEFT JOIN Empleado E ON M.ID_Empleado = E.ID_Empleado
+            LEFT JOIN Usuario U ON E.CURP = U.CURP
+            WHERE U.Email = ?";
+    $paramIdMed = [$_SESSION["email"]];
+
+    $resIdMed = $conn->seleccionar($consultaIdMed, $paramIdMed);
+
     if (!empty($_POST)){
         $idPaciente  = $_POST['paciente'];
          $datosPaciente = "SELECT 
@@ -29,6 +38,30 @@
         $stmt = $conn->seleccionar($datosPaciente, $paramDatos);
 
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+
+        $rowIdMed = $resIdMed->fetch(PDO::FETCH_ASSOC); 
+
+        $idMed = $rowIdMed['id'];
+
+        $consRecetas = "SELECT 
+                Re.Folio_Receta AS Folio , 
+                Cit.Folio_Cita AS Cita, 
+                CONCAT (U.Nombre , ' ', U.Apellido_P, ' ', U.Apellido_M) AS Paciente,
+                Re.Diagnostico,
+                Re.Observaciones,
+                Re.Tratamiento,
+                Cit.Fecha_Cita
+            FROM Receta Re
+            LEFT JOIN Cita Cit ON Re.Folio_Cita = Cit.Folio_Cita
+            LEFT JOIN Paciente Pa ON Cit.ID_Paciente = Pa.ID_Paciente
+            LEFT JOIN Usuario U On PA.CURP = U.CURP
+            WHERE Cit.ID_Medico = ? AND Cit.ID_Paciente = ?
+            ORDER BY Cit.Fecha_Cita ASC";
+
+            $paramReceta = array($idMed, $idPaciente);
+
+         $resRecetas = $conn->seleccionar($consRecetas, $paramReceta);
 
 
         $alergias = "El paciente no tiene alergias registradas";
@@ -79,7 +112,42 @@
         <p> <?php echo $padecimientos; ?></p>
 
 
+         <h3>Resumen de recetas del paciente</h3>
+    <table class="tabla-consultas">
+        <thead>
+            <tr>
+                <th>Receta</th>
+                <th>Cita</th>
+                <th>Paciente</th>
+                <th>Diagnóstico</th>
+                <th>Observaciones</th>
+                <th>Tratamiento</th>
+                <th>Fecha de cita</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        <?php
+        if($resRecetas){
+            foreach($resRecetas as $row){
+                echo "<tr>";
+                echo "<td>" . $row['Folio'] . "</td>";
+                echo "<td>" . $row['Cita'] . "</td>";
+                echo "<td>" . $row['Paciente'] . "</td>";
+                echo "<td>" . $row['Diagnostico'] . "</td>";
+                echo "<td>" . $row['Observaciones'] . "</td>";
+                echo "<td>" . $row['Tratamiento'] . "</td>";
+                echo "<td>" . $row['Fecha_Cita'] . "</td>";
+                echo "</tr>";
+            }
+        }
+        ?>
+
+        </tbody>
+    </table>
     </div>
+
+   
 
 
 

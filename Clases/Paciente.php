@@ -196,7 +196,7 @@ class Paciente {
                 $paramsU = [
                     ':nombre' => $user['nombre'],
                     ':email'  => $user['email'],
-                    ':pass'   => password_hash($user['pass'], PASSWORD_DEFAULT),
+                    ':pass'   => $user['pass'],
                     ':idPac'  => $this->idPaciente
                 ];
             } else {

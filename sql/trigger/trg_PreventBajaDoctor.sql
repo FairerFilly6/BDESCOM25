@@ -24,7 +24,8 @@ begin
 				i.Calle<>d.Calle or i.Numero<>d.Numero or
 				i.Colonia<>d.Colonia or i.Codig_P<>d.Codig_P or
 				i.Ciudad<>d.Ciudad or i.Estado<>d.Estado or
-				i.Telefono<>d.Telefono or i.Pwd<>d.Pwd
+				i.Telefono<>d.Telefono or i.Pwd<>d.Pwd or
+				i.Email<>d.Email or i.Estatus<>d.Estatus or i.CURP<>d.CURP
 	) begin
 		update u
 		set

@@ -35,7 +35,7 @@
     
 
     <div class=" centrar">
-        <h2>Modificar datos de un servicio</h2>
+        <h2>Modificar datos de un Medicamento</h2>
         
     </div>
     <form class="crear-cuenta" action="modificarMedicamento.php" method="POST">

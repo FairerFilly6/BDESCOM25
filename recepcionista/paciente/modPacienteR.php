@@ -43,8 +43,6 @@
     </div>
     <form class="crear-cuenta" action="modificarPacienteR.php" method="POST">
             <fieldset>
-                <legend>Información médica</legend>
-
 
                 <label for="paciente">Seleccione un paciente</label>
                 <select name="paciente" required>

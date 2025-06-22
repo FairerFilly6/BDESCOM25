@@ -30,13 +30,13 @@
         left join Empleado emp on med.ID_Empleado=emp.ID_Empleado
         left join Usuario uM on uM.CURP = emp.CURP
         left join EstatusCita eCit on cit.ID_EstatusCita = eCit.ID_EstatusCita
-        left join Consultorio con on cit.ID_Consultorio = con.ID_Consultorio";
+        left join Consultorio con on cit.ID_Consultorio = con.ID_Consultorio
+    where cit.ID_EstatusCita in (1, 2)";
 
 
     $resConsulta = $conn->seleccionar($sql);
 
-    $sqlLista = $sql." where eCit.ID_EstatusCita in ( 1,2 )";
-    $resLista = $conn->seleccionar($sqlLista);
+    $resLista = $conn->seleccionar($sql);
 
     if ( !empty($_POST) ) {
 
@@ -48,7 +48,7 @@
 
         $exitoUsuario = $conn->insertar($sqlProcedure,$paramAlta);
         if ($exitoUsuario) {
-            echo "<script>alert('Se ha registrado con éxito'); window.location.href = 'bajaCita.php';</script>";
+            echo "<script>alert('Se ha cancelado con éxito'); window.location.href = 'bajaCita.php';</script>";
         }
     }
 
@@ -76,12 +76,11 @@
     
 
     <div class=" centrar">
-        <h2>Baja</h2>
+        <h2>Baja Cita</h2>
         
     </div>
 
     <div class="menu centrar">
-        <h3>Citas Registradas en el Sistema</h3>
         <table class="tabla-consultas">
             <thead>
                 <tr>

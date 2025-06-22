@@ -30,6 +30,9 @@
             <li class="elemento-opciones">
                 <a href="crearReceta.php">Crear receta</a>
             </li>
+            <li class="elemento-opciones">
+                <a href="mostrarRecetas.php">Mostrar las recetas generadas</a>
+            </li>
             
         </ul>
     </div>

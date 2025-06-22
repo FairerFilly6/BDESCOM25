@@ -8,10 +8,10 @@ class Conexion {
     }
 
     private function conectar() {
-        $host = "DESKTOP-81BAFFF";
+         $host     = '127.0.0.1,1433';    
         $db = "ClinicaEspecialidadV6";
         $username = "sa";
-        $password = "Admin123";
+        $password = "sa";
 
         try {
             $this->conn = new PDO("sqlsrv:Server=$host;Database=$db", $username, $password);

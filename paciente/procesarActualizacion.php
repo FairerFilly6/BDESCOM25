@@ -1,8 +1,17 @@
 <?php
+session_start();
+if (!isset($_SESSION['email'])) {
+    header("Location: ../index.php");
+    exit();
+}
+
 require_once __DIR__ . '/../Clases/Conexion.php';
 require_once __DIR__ . '/../Clases/Paciente.php';
 
-$paciente = new Paciente(new Conexion());
+$db       = new Conexion();
+$paciente = new Paciente($db);
+
+// Recolecta datos del formulario
 $userData = [
     'nombre' => $_POST['nombre'] ?? '',
     'email'  => $_POST['email']  ?? '',
@@ -16,9 +25,12 @@ $patData = [
     'padecimientos' => $_POST['padecimientos'] ?? ''
 ];
 
+// Intenta actualizar
 if ($paciente->actualizarPerfil($userData, $patData)) {
     header('Location: inicioPaciente.php?msg=actualizado');
+    exit();
 } else {
+    // Si falla, vuelve a la vista con error
     header('Location: ActualizarDatosPaciente.php?error=fail');
+    exit();
 }
-exit;

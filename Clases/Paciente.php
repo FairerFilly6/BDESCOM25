@@ -181,24 +181,43 @@ class Paciente {
         try {
             $conn->beginTransaction();
 
-            // Usuario
-            $sqlU = "
-                UPDATE Usuario
-                   SET Nombre = :nombre,
-                       Email  = :email,
-                       Pwd    = :pass
-                 WHERE CURP = (
-                     SELECT CURP FROM Paciente WHERE ID_Paciente = :idPac
-                 )
-            ";
-            $this->db->modificar($sqlU, [
-                ':nombre' => $user['nombre'],
-                ':email'  => $user['email'],
-                ':pass'   => password_hash($user['pass'], PASSWORD_DEFAULT),
-                ':idPac'  => $this->idPaciente
-            ]);
+            // 1) Actualiza Usuario
+            if (!empty($user['pass'])) {
+                // Con contraseña nueva
+                $sqlU = "
+                    UPDATE Usuario
+                       SET Nombre = :nombre,
+                           Email  = :email,
+                           Pwd    = :pass
+                     WHERE CURP = (
+                         SELECT CURP FROM Paciente WHERE ID_Paciente = :idPac
+                     )
+                ";
+                $paramsU = [
+                    ':nombre' => $user['nombre'],
+                    ':email'  => $user['email'],
+                    ':pass'   => password_hash($user['pass'], PASSWORD_DEFAULT),
+                    ':idPac'  => $this->idPaciente
+                ];
+            } else {
+                // Sin tocar contraseña
+                $sqlU = "
+                    UPDATE Usuario
+                       SET Nombre = :nombre,
+                           Email  = :email
+                     WHERE CURP = (
+                         SELECT CURP FROM Paciente WHERE ID_Paciente = :idPac
+                     )
+                ";
+                $paramsU = [
+                    ':nombre' => $user['nombre'],
+                    ':email'  => $user['email'],
+                    ':idPac'  => $this->idPaciente
+                ];
+            }
+            $this->db->modificar($sqlU, $paramsU);
 
-            // Paciente
+            // 2) Actualiza Paciente
             $sqlP = "
                 UPDATE Paciente
                    SET Estatura    = :estatura,
@@ -208,13 +227,21 @@ class Paciente {
                        Padecimientos = :padecimientos
                  WHERE ID_Paciente = :idPac
             ";
-            $paramsP = array_merge($datos, [':idPac' => $this->idPaciente]);
+            $paramsP = [
+                ':estatura'      => $datos['estatura'],
+                ':peso'          => $datos['peso'],
+                ':sangre'        => $datos['sangre'],
+                ':alergias'      => $datos['alergias'],
+                ':padecimientos' => $datos['padecimientos'],
+                ':idPac'         => $this->idPaciente
+            ];
             $this->db->modificar($sqlP, $paramsP);
 
             $conn->commit();
             return true;
         } catch (Exception $e) {
             $conn->rollBack();
+            // Opcional: guarda $e->getMessage() en un log
             return false;
         }
     }

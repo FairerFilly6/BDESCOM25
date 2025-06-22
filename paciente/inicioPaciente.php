@@ -22,22 +22,22 @@
                 <a href="agendarCitaPaciente.php">Agendar cita</a>
             </li>
             <li class="elemento-opciones">
-                <a href="#">Cancelar cita</a>
+                <a href="cancelarCitasPaciente.php">Cancelar cita</a>
             </li>
             <li class="elemento-opciones">
                 <a href="mostrarCitasPaciente.php">Historial de citas</a>
             </li>
             <li class="elemento-opciones">
-                <a href="#">Pago citas</a>
+                <a href="pagoCitasPaciente.php">Pago citas</a>
             </li>
             <li class="elemento-opciones">
-                <a href="#">Actualizar datos personales</a>
+                <a href="ActualizarDatosPaciente.php">Actualizar datos personales</a>
             </li>
             
         </ul>
     </div>
     <div class="logout centrar">
-        <a class="border" href="#">Cerrar sesión</a>
+        <p><a class="border" href="logout.php">Cerrar sesión</a></p>
     </div>
 
 

@@ -1,65 +1,104 @@
+<?php
+session_start();
+if (!isset($_SESSION['email'])) {
+    header("Location: ../index.php");
+    exit();
+}
 
+include_once __DIR__ . "/../Clases/Conexion.php";
+$conn = new Conexion();
 
+// 1) Obtener el ID_Paciente de la sesión
+$sql = "
+    SELECT P.ID_Paciente AS idPac
+      FROM Paciente P
+      JOIN Usuario U ON P.CURP = U.CURP
+     WHERE U.Email = ?
+";
+$stmt = $conn->seleccionar($sql, [ $_SESSION['email'] ]);
+
+$citas = [];
+if ($stmt) {
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    if ($row) {
+        // 2) Obtener las citas que aún no están canceladas por el paciente
+        $consulta = "
+            SELECT
+              C.Folio_Cita      AS Folio,
+              U.Nombre + ' ' + U.Apellido_P AS Medico,
+              Esp.Nombre        AS Especialidad,
+              CONVERT(VARCHAR(10), C.Fecha_Cita, 23) AS FechaCita,
+              CONVERT(VARCHAR(5), H.Inicio_Horario, 108) AS Horario
+            FROM Cita C
+            JOIN Medico M        ON C.ID_Medico      = M.ID_Medico
+            JOIN Empleado E      ON M.ID_Empleado    = E.ID_Empleado
+            JOIN Usuario U       ON E.CURP           = U.CURP
+            JOIN Especialidad Esp ON M.ID_Especialidad = Esp.ID_Especialidad
+            JOIN Horario H       ON C.ID_Horario     = H.ID_Horario
+           WHERE C.ID_Paciente   = ?
+             AND C.ID_EstatusCita <> (
+                   SELECT ID_EstatusCita
+                     FROM EstatusCita
+                    WHERE EstatusCita = 'Cancelada Paciente'
+               )
+           ORDER BY C.Fecha_Cita DESC
+        ";
+        $citas = $conn->seleccionar($consulta, [ $row['idPac'] ])
+                     ->fetchAll(PDO::FETCH_ASSOC);
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>ClinicaDeEspecialidad</title>
-    <link rel="stylesheet" href="../css/styles.css">
+  <meta charset="UTF-8">
+  <title>Cancelar Citas</title>
+  <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
-
-<div class="header">
-    <h1>Clínica de especialidad</h1>
-</div>
-
-<div class="menu centrar">
+  <div class="header">
+    <h1>Clínica de Especialidad</h1>
+  </div>
+  <div class="menu centrar">
     <h2>Bienvenido Paciente</h2>
-    <h3>Cancelar citas</h3>
-    <table class="tabla-consultas">
+    <h3>Cancelar cita</h3>
+
+    <?php if (empty($citas)): ?>
+      <p>No tienes citas activas para cancelar.</p>
+    <?php else: ?>
+      <table class="tabla-consultas">
         <thead>
-            <tr>
-                <th>Folio</th>
-                <th>Médico</th>
-                <th>Especialidad</th>
-                <th>Fecha cita</th>
-                <th>Fecha reservacion</th>
-                <th>Cancelar</th>
-            </tr>
+          <tr>
+            <th>Folio</th>
+            <th>Médico</th>
+            <th>Especialidad</th>
+            <th>Fecha cita</th>
+            <th>Horario</th>
+            <th>Acción</th>
+          </tr>
         </thead>
         <tbody>
-            <!-- Aquí se llenarán los datos con PHP -->
+          <?php foreach ($citas as $c): ?>
             <tr>
-                <td>1</td>
-                <td>Juan Hernandez</td>
-                <td>Nefrologo</td>
-                <td>12/12/2024 12:00</td>
-                <td>12/1/2025 17:30</td>
-                <td>
-                    <a  class="cancelacion"href="#">Cancelar</a>
-                </td>
+              <td><?= htmlspecialchars($c['Folio']) ?></td>
+              <td><?= htmlspecialchars($c['Medico']) ?></td>
+              <td><?= htmlspecialchars($c['Especialidad']) ?></td>
+              <td><?= htmlspecialchars($c['FechaCita']) ?></td>
+              <td><?= htmlspecialchars($c['Horario']) ?></td>
+              <td>
+                <form action="procesarCancelacion.php" method="post">
+                  <input type="hidden" name="idCita" value="<?= $c['Folio'] ?>">
+                  <button type="submit" class="btn btn-danger">Cancelar</button>
+                </form>
+              </td>
             </tr>
-            <tr>
-                <td>2</td>
-                <td>Miguel Lopez</td>
-                <td>Cardiologo</td>
-                <td>1/12/2024 12:00</td>
-                <td>1/1/2025 10:30</td>
-                <td >
-                    <a class="cancelacion" href="#">Cancelar</a>
-                </td>
-            </tr>
+          <?php endforeach; ?>
         </tbody>
-    </table>
+      </table>
+    <?php endif; ?>
 
-    </div>
-    <div class="logout centrar">
-        <a class="border" href="#">Cerrar sesión</a>
-    </div>
-
-
-   
-</div>
-
+    <p><a class="border" href="inicioPaciente.php">← Volver al menú</a></p>
+    <p><a class="border" href="logout.php">Cerrar sesión</a></p>
+  </div>
 </body>
 </html>

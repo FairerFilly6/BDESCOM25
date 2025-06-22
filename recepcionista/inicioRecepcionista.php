@@ -21,14 +21,15 @@
         
         <ul class="lista-opciones">
             <li class="elemento-opciones">
-                <a href="#">Ver pacientes</a>
+                <a href="paciente/mostrarPacienteR.php">Ver pacientes</a>
             </li>
             <li class="elemento-opciones">
-                <a href="#">Alta de pacientes</a>
+                <a href="paciente/CrearCuentaR.php">Alta de pacientes</a>
             </li>
             <li class="elemento-opciones">
-                <a href="#">Baja de pacientes</a>
+                <a href="paciente/modPacienteR.php">Modificar datos de paciente</a>
             </li>
+
 
         </ul>
     </div>
@@ -38,13 +39,13 @@
         
         <ul class="lista-opciones">
             <li class="elemento-opciones">
-                <a href="#">Ver recepcionistas</a>
+                <a href="recepcionista/verRecepcionista.php">Ver recepcionistas</a>
             </li>
             <li class="elemento-opciones">
-                <a href="#">Alta de recepcionistas</a>
+                <a href="recepcionista/altaRecepcionista.php">Alta de recepcionistas</a>
             </li>
             <li class="elemento-opciones">
-                <a href="#">Baja de recepcionistas</a>
+                <a href="recepcionista/bajaRecepcionista.php">Baja de recepcionistas</a>
             </li>
 
         </ul>
@@ -55,13 +56,13 @@
         
         <ul class="lista-opciones">
             <li class="elemento-opciones">
-                <a href="#">Ver doctores</a>
+                <a href="doctor/doctorRecepcionista.php">Ver doctores</a>
             </li>
             <li class="elemento-opciones">
-                <a href="#">Alta de doctor</a>
+                <a href="doctor/altaDoctor.php">Alta de doctor</a>
             </li>
             <li class="elemento-opciones">
-                <a href="#">Baja de doctor</a>
+                <a href="doctor/bajaDoctor.php">Baja de doctor</a>
             </li>
 
         </ul>
@@ -72,13 +73,74 @@
         
         <ul class="lista-opciones">
             <li class="elemento-opciones">
-                <a href="#">Ver citas</a>
+                <a href="cita/verCita.php">Ver citas</a>
             </li>
             <li class="elemento-opciones">
-                <a href="#">Alta de cita</a>
+                <a href="cita/altaCita.php">Alta de cita</a>
             </li>
             <li class="elemento-opciones">
-                <a href="#">Cancelar cita</a>
+                <a href="cita/bajaCita.php">Cancelar cita</a>
+            </li>
+
+        </ul>
+    </div>
+
+    <div class=" border ">
+        <h3 class="centrar">Ventas</h3>
+        
+        <ul class="lista-opciones">
+            <li class="elemento-opciones">
+                <a href="venta/CrearVenta.php">Nueva venta</a>
+            </li>
+            <li class="elemento-opciones">
+                <a href="venta/mostrarVentas.php">Mostrar venta</a>
+            </li>
+            
+
+        </ul>
+    </div>
+
+    <div class=" border ">
+        <h3 class="centrar">Medicamentos</h3>
+        
+        <ul class="lista-opciones">
+            <li class="elemento-opciones">
+                <a href="medicamento/crearMedicamento.php">Nuevo medicamento</a>
+            </li>
+            <li class="elemento-opciones">
+                <a href="medicamento/mostrarMedicamentos.php">Mostrar medicamento</a>
+            </li>
+            <li class="elemento-opciones">
+                <a href="medicamento/modMedicamento.php">Modificar medicamento</a>
+            </li>
+            
+
+        </ul>
+    </div>
+
+    <div class=" border ">
+        <h3 class="centrar">Servicios</h3>
+        
+        <ul class="lista-opciones">
+            <li class="elemento-opciones">
+                <a href="servicio/crearServicio.php">Nuevo servicio</a>
+            </li>
+            <li class="elemento-opciones">
+                <a href="servicio/mostrarServicios.php">Mostrar servicios</a>
+            </li>
+            <li class="elemento-opciones">
+                <a href="servicio/modServicio.php">Modificar servicios</a>
+            </li>
+            
+
+        </ul>
+    </div>
+    <div class=" border ">
+        <h3 class="centrar">Pagos</h3>
+        
+        <ul class="lista-opciones">
+            <li class="elemento-opciones">
+                <a href="pago/mostrarPagos.php">Ver pagos</a>
             </li>
 
         </ul>

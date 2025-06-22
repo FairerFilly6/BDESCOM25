@@ -61,7 +61,7 @@
         </form>
 
         <div class="logout centrar">
-            <a class="border" href="../inicioDoctor.php">Regresar al menú principal</a>
+            <a class="border" href="inicioDoctor.php">Regresar al menú principal</a>
         </div>
 
    

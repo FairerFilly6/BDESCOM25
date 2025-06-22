@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $pwd = $_POST['contrasena'];
 
     $conn = new Conexion();
-    $sql = "SELECT Email,Pwd,ID_TipoUsuario AS id, CURP FROM Usuario WHERE Email = ?";
+    $sql = "SELECT Email,Pwd,ID_TipoUsuario AS id, CURP FROM Usuario WHERE Email = ? AND Estatus = 'Activo'";
     $params = array($email);
 
     $stmt=$conn->seleccionar($sql,$params);

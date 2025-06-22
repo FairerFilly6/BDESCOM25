@@ -22,10 +22,10 @@
                 <a href="mostrarCitasDoctor.php">Ver citas</a>
             </li>
             <li class="elemento-opciones">
-                <a href="#">Ver datos de pacientes</a>
+                <a href="verDatosPacientes.php">Ver datos de pacientes</a>
             </li>
             <li class="elemento-opciones">
-                <a href="#">Cancelar cita</a>
+                <a href="cancelarCitaDoctor.php">Cancelar cita</a>
             </li>
             <li class="elemento-opciones">
                 <a href="#">Crear receta</a>

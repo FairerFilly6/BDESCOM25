@@ -151,10 +151,10 @@
         
         <ul class="lista-opciones">
             <li class="elemento-opciones">
-                <a href="#">Registrar venta</a>
+                <a href="venta/CrearVenta.php">Registrar venta</a>
             </li>
             <li class="elemento-opciones">
-                <a href="#">Historial de ventas</a>
+                <a href="venta/mostrarVentas.php">Historial de ventas</a>
             </li>
 
         </ul>
@@ -165,10 +165,24 @@
         
         <ul class="lista-opciones">
             <li class="elemento-opciones">
-                <a href="#">Medicamentos disponibles</a>
+                <a href="medicamento/mostrarMedicamentos.php">Medicamentos disponibles</a>
             </li>
             <li class="elemento-opciones">
-                <a href="#">Alta de medicamentos</a>
+                <a href="medicamento/crearMedicamento">Alta de medicamentos</a>
+            </li>
+
+        </ul>
+    </div>
+
+    <div class=" border ">
+        <h3 class="centrar">Servicios</h3>
+        
+        <ul class="lista-opciones">
+            <li class="elemento-opciones">
+                <a href="servicio/mostrarServicios.php">Servicios disponibles</a>
+            </li>
+            <li class="elemento-opciones">
+                <a href="servicio/crearServicio">Alta de servicios</a>
             </li>
 
         </ul>

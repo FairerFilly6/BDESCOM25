@@ -28,7 +28,7 @@
                 <a href="cancelarCitaDoctor.php">Cancelar cita</a>
             </li>
             <li class="elemento-opciones">
-                <a href="#">Crear receta</a>
+                <a href="crearReceta.php">Crear receta</a>
             </li>
             
         </ul>

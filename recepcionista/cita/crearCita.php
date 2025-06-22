@@ -62,7 +62,7 @@
                     $paramsCita = array($paciente,$idhorario,$especialista,$fechaCita,$fechaReservacion,$idFactura,$idConsultorio,$estatusCita,$montoDevuelto);
                     $insercionCita = $conn->insertar($insertarCita,$paramsCita);
                     if ($insercionCita) {
-                         header("Location: altaCita.php");
+                         header("Location: verCita.php");
                     }
 
                 

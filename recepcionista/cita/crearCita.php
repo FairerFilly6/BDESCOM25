@@ -57,8 +57,8 @@
                     // $idFactura = $resultadoFactura['ID'];
                     $idFactura = $conn->lastInsertId();
 
-                    $insertarCita = "INSERT INTO Cita VALUES (?,?,?,?,?,?,?,?,?)";
-                    $paramsCita = array($paciente,$idhorario,$especialista,$fechaCita,$fechaReservacion,$idFactura,$idConsultorio,$estatusCita,$montoDevuelto);
+                    $insertarCita = "INSERT INTO Cita VALUES (?,?,?,?,getdate(),?,?,?,?)";
+                    $paramsCita = array($paciente,$idhorario,$especialista,$fechaCita,$idFactura,$idConsultorio,$estatusCita,$montoDevuelto);
                     $insercionCita = $conn->insertar($insertarCita,$paramsCita);
 
                     if ($insercionCita) {

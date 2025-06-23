@@ -17,7 +17,7 @@ class Conexion {
         */
 
         $host = "LAPTOP-7AU5T3D0";
-        $db = "ClinicaEspecialidadV6";
+        $db = "Clinica";
         $username = "userapela";
         $password = "userapela";
 

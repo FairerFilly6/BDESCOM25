@@ -9,6 +9,9 @@
 
     include_once("../../Clases/Conexion.php");
     $conn = new Conexion();
+    //validacion del sp para barrer las citas y cancelar las pendientes de pago
+    $SPCanFaltaPago = "EXEC CancelacionFaltaDePago";
+    $conn->seleccionar($SPCanFaltaPago);
     $sql = 
 
     "select

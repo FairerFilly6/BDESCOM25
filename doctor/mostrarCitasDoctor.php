@@ -9,6 +9,11 @@
 
     include_once("../Clases/Conexion.php");
     $conn = new Conexion();
+
+    //validacion del sp para barrer las citas y cancelar las pendientes de pago
+    $SPCanFaltaPago = "EXEC CancelacionFaltaDePago";
+    $conn->seleccionar($SPCanFaltaPago);
+    
     $sql = "SELECT M.ID_Medico AS id
             FROM Medico M
             LEFT JOIN Empleado E ON M.ID_Empleado = E.ID_Empleado

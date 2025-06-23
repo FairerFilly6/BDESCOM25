@@ -8,6 +8,10 @@ if (!isset($_SESSION['email'])) {
 include_once __DIR__ . "/../Clases/Conexion.php";
 $conn = new Conexion();
 
+//validacion del sp para barrer las citas y cancelar las pendientes de pago
+    $SPCanFaltaPago = "EXEC CancelacionFaltaDePago";
+    $conn->seleccionar($SPCanFaltaPago);
+
 // 1) Obtener el ID_Paciente a partir del email de sesión
 $sql = "
     SELECT P.ID_Paciente AS id

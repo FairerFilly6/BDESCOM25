@@ -8,6 +8,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $pwd = $_POST['contrasena'];
 
     $conn = new Conexion();
+
+    //validacion del sp para barrer las citas y cancelar las pendientes de pago
+    $SPCanFaltaPago = "EXEC CancelacionFaltaDePago";
+    $conn->seleccionar($SPCanFaltaPago);
+
+
     $sql = "SELECT Email,Pwd,ID_TipoUsuario AS id, CURP FROM Usuario WHERE Email = ? AND Estatus = 'Activo'";
     $params = array($email);
 

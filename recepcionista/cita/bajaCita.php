@@ -30,7 +30,7 @@
         left join Usuario uM on uM.CURP = emp.CURP
         left join EstatusCita eCit on cit.ID_EstatusCita = eCit.ID_EstatusCita
         left join Consultorio con on cit.ID_Consultorio = con.ID_Consultorio
-    where cit.ID_EstatusCita = 2";
+    where cit.ID_EstatusCita in (1,2)";
 
 
     $resConsulta = $conn->seleccionar($sql);

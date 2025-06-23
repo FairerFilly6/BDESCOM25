@@ -1,51 +1,47 @@
-USE ClinicaEspecialidadV6
+USE Clinica
 
-INSERT INTO Medicamento
-VALUES ('Loratadina','AAAA',100,120,'12/10/2030')
+INSERT INTO Medicamento VALUES
+	('Aspirina','BBBB',200,220,'12/10/2030'),
+	('Loratadina','AAAA',100,120,'12/10/2030')
 
-INSERT INTO Medicamento
-VALUES ('Aspirina','BBBB',200,220,'12/10/2030')
+INSERT INTO Servicio VALUES
+	('Curacion','Curacion de una herida menor',100),
+	('Inyeccion','Aplicacion de inyeccion', 150)
 
-INSERT INTO Servicio
-VALUES ('Curacion','Curacion de una herida menor',100),
-		('Inyeccion','Aplicacion de inyeccion', 150)
+INSERT INTO TipoUsuario VALUES
+	('Paciente'),
+	('Empleado')
 
-		
+	--recepcionista
+INSERT INTO Usuario VALUES
+	('CURPPRUEBAA112233','Juan', 'Pérez','Magaña','2000-05-28','Valladolid','25','Roma Norte', '06700','Cuauhtemoc','CDMX','5512412621','juanperez@gmail.com','pwd123',2, 'Activo')
 
-INSERT INTO TipoUsuario VALUES ('Paciente')
+insert into Empleado VALUES
+	('CURPPRUEBAA112233','RFCRECE',7996,2,14)
 
-INSERT INTO TipoUsuario VALUES ('Empleado')
+insert into Recepcionista values (1)
 
-INSERT INTO Usuario 
-VALUES ('CURPPRUEBAA112233','Juan', 'Pérez','Magaña','2000-05-28','Valladolid','25','Roma Norte', '06700','Cuauhtemoc','CDMX','5512412621','juanperez@gmail.com','pwd123',1 )
+INSERT INTO Usuario VALUES
+	('CURPPRUEBAA123456','Andres', 'Juarez','Ortuño','2000-05-08','Colima','25','Roma Norte', '06700','Cuauhtemoc','CDMX','5512412621','andresjuarez@gmail.com','pwd123',1, 'Activo' )
 
-INSERT INTO Paciente
-VALUES ('CURPPRUEBAA112233',1.75,76,'A+','Paracetamol','Diabetes')
-
-
-INSERT INTO Usuario 
-VALUES ('CURPPRUEBAA123456','Andres', 'Juarez','Ortuño','2000-05-08','Colima','25','Roma Norte', '06700','Cuauhtemoc','CDMX','5512412621','andresjuarez@gmail.com','pwd123',1 )
-
-INSERT INTO Paciente
-VALUES ('CURPPRUEBAA123456',1.78,76,'A+','Paracetamol','Hipertension')
+INSERT INTO Paciente VALUES
+	('CURPPRUEBAA123456',1.78,76,'A+','Paracetamol','Hipertension')
 
 
 
-INSERT INTO Usuario 
-VALUES ('CURPPRUEBAA223344','Miguel', 'López','Guzman','1970-07-28','Orfebreria','25','Oficios', '06700','Venustiano Carranza','CDMX','5514251425','miguellopez@gmail.com','pwd123',2 )
+INSERT INTO Usuario VALUES
+	('CURPPRUEBAA223344','Miguel', 'López','Guzman','1970-07-28','Orfebreria','25','Oficios', '06700','Venustiano Carranza','CDMX','5514251425','miguellopez@gmail.com','pwd123',2, 'Activo')
+
+INSERT INTO Usuario VALUES
+	('CURPPRUEBAA123457','Roberto', 'López','Guzman','1970-07-28','Orfebreria','25','Oficios', '06700','Venustiano Carranza','CDMX','5514251425','robertolopez@gmail.com','pwd123',2, 'Activo' )
 
 
+INSERT INTO TipoEmpleado VALUES
+	('Doctor'),
+	('Recepcionista')
 
-
-INSERT INTO Usuario 
-VALUES ('CURPPRUEBAA123457','Roberto', 'López','Guzman','1970-07-28','Orfebreria','25','Oficios', '06700','Venustiano Carranza','CDMX','5514251425','robertolopez@gmail.com','pwd123',2 )
-
-
-INSERT INTO TipoEmpleado
-VALUES ('Doctor'), ('Recepcionista')
-
-INSERT INTO Horario 
-VALUES ('07:00:00','08:00:00'),
+INSERT INTO Horario VALUES
+	('07:00:00','08:00:00'),
 	('08:00:00','09:00:00'),
 	('09:00:00','10:00:00'),
 	('10:00:00','11:00:00'),
@@ -58,58 +54,45 @@ VALUES ('07:00:00','08:00:00'),
 	('17:00:00','18:00:00'),
 	('18:00:00','19:00:00'),
 	('19:00:00','20:00:00'),
-    ('07:00:00','14:00:00')
+    ('07:00:00','14:00:00'),
+	('14:00:00','20:00:00')
 
-INSERT INTO Horario 
-VALUES ('14:00:00','20:00:00')
 
-INSERT INTO EstatusCita
-VALUES ('Agendada pendiente de pago'),
-('Pagada pendiente por atender'),
-('Cancelada Falta de pago'),
-('Cancelada Paciente'),
-('Cancelada Doctor'),
-('Atendida'),
-('No acudió')
+INSERT INTO EstatusCita VALUES
+	('Agendada pendiente de pago'),
+	('Pagada pendiente por atender'),
+	('Cancelada Falta de pago'),
+	('Cancelada Paciente'),
+	('Cancelada Doctor'),
+	('Atendida'),
+	('No acudió')
 
-INSERT INTO Empleado VALUES('CURPPRUEBAA223344','RFC223344',50000,1,14)
 
 INSERT INTO Empleado VALUES('CURPPRUEBAA123457','RFC123457',50000,2,14)
 
 
+INSERT INTO Especialidad VALUES
+	('Cardiologo',700),
+	('Nefrologo',900),
+	('Dermatologo', 850),
+	('Pediatra', 950),
+	('Ginecologo', 1000),
+	('Ortopedista', 1100),
+	('Oftalmologo', 900),
+	('Psiquiatra', 1300),
+	('Endocrinologo', 1150)
 
-
-
-
-INSERT INTO Especialidad VALUES ('Cardiologo',700)
-INSERT INTO Especialidad VALUES ('Nefrologo',900)
-INSERT INTO Especialidad VALUES ('Dermatologo', 850);
-INSERT INTO Especialidad VALUES ('Pediatra', 950);
-INSERT INTO Especialidad VALUES ('Ginecologo', 1000);
-INSERT INTO Especialidad VALUES ('Ortopedista', 1100);
-INSERT INTO Especialidad VALUES ('Oftalmologo', 900);
-INSERT INTO Especialidad VALUES ('Psiquiatra', 1300);
-INSERT INTO Especialidad VALUES ('Endocrinologo', 1150);
-
-INSERT INTO Medico VALUES ('CEDPRUEBA223344',1,1)
 
 INSERT INTO Consultorio VALUES (110,1,3)
-
-INSERT INTO Medicamento
-VALUES ('Loratadina','AAAA',100,120,'12/10/2030')
-
-INSERT INTO Medicamento
-VALUES ('Aspirina','BBBB',200,220,'12/10/2030')
-
 
 INSERT INTO Factura VALUES ('12/06/2024', 'Venta de farmacia', 'Pagada')
 
 
-INSERT INTO Recepcionista VALUES(2)
+INSERT INTO Recepcionista VALUES (3)
 
-
-INSERT INTO Venta VALUES (1,'12/06/2025','Primer venta del sistema')
-	INSERT INTO Venta VALUES (1,'12/06/2025','Segunda venta del sistema')
+INSERT INTO Venta VALUES
+	(2,'12/06/2025','Primer venta del sistema'),
+	(2,'12/06/2025','Segunda venta del sistema')
 
 
 

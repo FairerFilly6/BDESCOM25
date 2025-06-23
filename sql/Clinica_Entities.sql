@@ -1,6 +1,7 @@
-CREATE DATABASE ClinicaEspecialidadV6
+CREATE DATABASE Clinica
 GO
-USE ClinicaEspecialidadV6
+
+USE Clinica
 GO
 
 CREATE TABLE TipoUsuario (

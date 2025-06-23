@@ -108,6 +108,11 @@ class Paciente {
              WHERE Folio_Cita = :idCita
                AND ID_Paciente = :idPac
         ";
+        $sqlProcedure ='exec SP_CANCELACION_CITA ?,?';
+        $paramAlta =array($idCita, 1);
+
+        $exitoUsuario = $this->db->insertar($sqlProcedure,$paramAlta);
+
         return $this->db->modificar($sql, [
             ':idCita' => $idCita,
             ':idPac'  => $this->idPaciente

@@ -5,31 +5,44 @@ create procedure SP_CANCELACION_CITA
 as
 	begin
 		
-		declare @costoCita int;
+		declare @costoCita DECIMAL(10,2), @ID_EstatusCita int;
 
 		set @costoCita = (select Costo from Especialistas where ID = ( select ID_Medico from Cita where Folio_Cita=@folio ) );
 
-		if ( @tipoUsuario = 2 ) begin
-			update Cita set Monto_Devuelto = @costoCita, ID_EstatusCita = 5 where Folio_Cita = @folio;
+		set @ID_EstatusCita = (select ID_EstatusCita from Cita where Folio_Cita=@folio);
+
+		if ( @ID_EstatusCita = 1 ) begin
+			if ( @tipoUsuario = 2 ) begin
+				update Cita set Monto_Devuelto = 0.0, ID_EstatusCita = 5 where Folio_Cita = @folio;
+			end else begin
+				update Cita set Monto_Devuelto = 0.0, ID_EstatusCita = 4 where Folio_Cita = @folio;
+			end
+		end
+		else if ( @tipoUsuario = 2 ) begin
+			update Cita set Monto_Devuelto = cast(@costoCita as money), ID_EstatusCita = 5 where Folio_Cita = @folio;
 		end
 		else begin
 
-			declare @fechaHoy datetime, @fechaCita datetime;
+			declare @fechaHoy datetime, @fechaFinal datetime, @fechaCita date, @horaCita time;
 			declare @horaAntelacion float;
 
 			set @fechaHoy = cast( (select getdate()) as datetime );
-			set @fechaCita = cast( (select Fecha_Cita from Cita where Folio_Cita=@folio ) as datetime);
 
-			set @horaAntelacion = datediff ( minute, @fechaHoy, @fechaCita )/60.0;
+			set @fechaCita = (select Fecha_Cita from Cita where Folio_Cita=@folio);
+			set @horaCita = (select h.Inicio_Horario from Cita c join Horario h on c.ID_Horario=h.ID_Horario where Folio_Cita=@folio);
 
-			if ( @horaAntelacion >= 48 ) begin
-				update Cita set Monto_Devuelto = @costoCita where Folio_Cita = @folio;
+			set @fechaFinal = cast(@fechaCita as datetime) + cast(@horaCita as datetime);
+
+			set @horaAntelacion = datediff ( minute, @fechaHoy, @fechaFinal )/60.0;
+
+			if ( @horaAntelacion >= 48.0 ) begin
+				update Cita set Monto_Devuelto = cast(@costoCita as money) where Folio_Cita = @folio;
 			end
-			else if ( @horaAntelacion < 48 and @horaAntelacion >= 24 ) begin
-				update Cita set Monto_Devuelto = @costoCita*0.5 where Folio_Cita = @folio;
+			else if ( @horaAntelacion < 48.0 and @horaAntelacion >= 24.0 ) begin
+				update Cita set Monto_Devuelto = cast(@costoCita as money) *0.5 where Folio_Cita = @folio;
 			end
 			else begin
-				update Cita set Monto_Devuelto = 0 where Folio_Cita = @folio;
+				update Cita set Monto_Devuelto = 0.0 where Folio_Cita = @folio;
 			end
 
 			update Cita set ID_EstatusCita = 4 where Folio_Cita = @folio;
@@ -37,4 +50,4 @@ as
 	end
 
 	GO
-	grant exec on SP_CANCELACION_CITA to --user
+	grant exec on SP_CANCELACION_CITA to userapela--user

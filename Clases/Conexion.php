@@ -16,10 +16,10 @@ class Conexion {
         $password = "Admin123";
         */
 
-        $host = "LAPTOP-7AU5T3D0";
+        $host = "HP_DE_OMAR\MSSQLSERVER2";
         $db = "ClinicaEspecialidadV6";
-        $username = "userapela";
-        $password = "userapela";
+        $username = "sa";
+        $password = "Admin123";
 
 
         try {

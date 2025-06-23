@@ -5,7 +5,7 @@ create procedure SP_CANCELACION_CITA
 as
 	begin
 		
-		declare @costoCita int;
+		declare @costoCita DECIMAL(10,2);
 
 		set @costoCita = (select Costo from Especialistas where ID = ( select ID_Medico from Cita where Folio_Cita=@folio ) );
 
@@ -37,4 +37,4 @@ as
 	end
 
 	GO
-	grant exec on SP_CANCELACION_CITA to --user
+	grant exec on SP_CANCELACION_CITA to userapela--user

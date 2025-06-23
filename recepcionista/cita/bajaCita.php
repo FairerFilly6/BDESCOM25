@@ -19,8 +19,7 @@
         cit.Fecha_Cita as Fecha,
         format( cast(hor.Inicio_Horario as datetime), 'hh:ss tt' ) + ' - ' + format( cast(hor.Fin_Horario as datetime), 'hh:ss tt' ) as Horario,
         con.Numero as Consultorio,
-        eCit.EstatusCita as Estatus,
-        format(cit.Monto_Devuelto,'N2') as Devolucion
+        eCit.EstatusCita as Estatus
 
     from
         Cita cit left join Horario hor on cit.ID_Horario=hor.ID_Horario
@@ -31,7 +30,7 @@
         left join Usuario uM on uM.CURP = emp.CURP
         left join EstatusCita eCit on cit.ID_EstatusCita = eCit.ID_EstatusCita
         left join Consultorio con on cit.ID_Consultorio = con.ID_Consultorio
-    where cit.ID_EstatusCita in (1, 2)";
+    where cit.ID_EstatusCita = 2";
 
 
     $resConsulta = $conn->seleccionar($sql);
@@ -91,7 +90,6 @@
                     <th>HORARIO</th>
                     <th>CONSULTORIO</th>
                     <th>ESTATUS</th>
-                    <th>Devolucion</th>
                 </tr>
             </thead>
 
@@ -108,7 +106,6 @@
                         echo "<td>" . $row['Horario'] . "</td>";
                         echo "<td>" . $row['Consultorio'] . "</td>";
                         echo "<td>" . $row['Estatus'] . "</td>";
-                        echo "<td>" . $row['Devolucion'] . "</td>";
                         echo "</tr>";
                     }
                 }

@@ -8,7 +8,7 @@ require_once __DIR__ . '/../Clases/Conexion.php';
 $conn = new Conexion();
 
 // Traer especialidades y horarios
-$esp = $conn->seleccionar('SELECT ID_Especialidad AS ID, Nombre, Costo_Consulta FROM Especialidad', []);
+$esp = $conn->seleccionar('select * from Especialistas', []);
 $hrs = $conn->seleccionar('SELECT ID_Horario, Inicio_Horario, Fin_Horario FROM Horario', []);
 ?>
 <!DOCTYPE html>
@@ -39,7 +39,7 @@ $hrs = $conn->seleccionar('SELECT ID_Horario, Inicio_Horario, Fin_Horario FROM H
         <select id="especialidad" name="especialidad" class="form-control" required>
           <?php foreach ($esp as $e): ?>
             <option value="<?= $e['ID'] ?>">
-              <?= htmlspecialchars("{$e['Nombre']} ($".number_format($e['Costo_Consulta'],2).")") ?>
+              <?= htmlspecialchars($e['Especialidad'] . ' ' . $e['Nombre'] . ' - Costo consulta: $' . number_format($e['Costo'], 2)) ?>
             </option>
           <?php endforeach; ?>
         </select>

@@ -36,12 +36,7 @@ if ($stmt) {
             JOIN Especialidad Esp ON M.ID_Especialidad = Esp.ID_Especialidad
             JOIN Horario H       ON C.ID_Horario     = H.ID_Horario
            WHERE C.ID_Paciente   = ?
-             AND C.ID_EstatusCita <> (
-                   SELECT ID_EstatusCita
-                     FROM EstatusCita
-                    WHERE EstatusCita = 'Cancelada Paciente'
-               )
-           ORDER BY C.Fecha_Cita DESC
+             AND C.ID_EstatusCita in (1,2)
         ";
         $citas = $conn->seleccionar($consulta, [ $row['idPac'] ])
                      ->fetchAll(PDO::FETCH_ASSOC);

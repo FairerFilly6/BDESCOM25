@@ -40,13 +40,13 @@
 <body>
 
 <div class="header">
-    <h1>Pacientes registrados</h1>
+    <h1>Clínica de especialidad</h1>
 </div>
 
 <div class="menu centrar">
-    <h2>Bienvenido Paciente</h2>
+    <h2>Bienvenido Recepcionista</h2>
 
-    <h3>Citas registradas</h3>
+    <h3>Pacientes Registrados</h3>
     <table class="tabla-consultas">
         <thead>
             <tr>

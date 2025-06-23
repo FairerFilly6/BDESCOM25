@@ -1,6 +1,7 @@
-CREATE DATABASE ClinicaEspecialidadV6
+CREATE DATABASE Clinica
 GO
-USE ClinicaEspecialidadV6
+
+USE Clinica
 GO
 
 CREATE TABLE TipoUsuario (
@@ -103,7 +104,7 @@ CREATE TABLE Cita (
 	ID_Horario INT FOREIGN KEY References Horario(ID_Horario),
 	ID_Medico INT FOREIGN KEY References Medico(ID_Medico),
     Fecha_Cita DATE NOT NULL,
-    Fecha_Reservacion DATE NOT NULL,
+    Fecha_Reservacion DATETIME NOT NULL,
     ID_Factura INT FOREIGN KEY REFERENCES Factura(ID_Factura),
     ID_Consultorio INT FOREIGN KEY REFERENCES Consultorio(ID_Consultorio),
     ID_EstatusCita INT FOREIGN KEY REFERENCES EstatusCita (ID_EstatusCita),

@@ -7,15 +7,16 @@
         header("Location: ../index.php");
         exit();
     }
-    include_once("../../Clases/Conexion.php");
+    include_once("../Clases/Conexion.php");
         
     $conn = new Conexion();
     
 
-    $usuarios = "SELECT P.ID_Paciente AS ID,  
-                CONCAT(U.Nombre, ' ' ,U.Apellido_P,' ' , U.Apellido_M) AS Nombre
-                FROM Paciente P
-                LEFT JOIN Usuario U ON P.CURP = U.CURP";
+    $usuarios = "SELECT 
+                    Pa.ID_Paciente AS id,
+                    CONCAT (U.Nombre,' ', U.Apellido_P, ' ', U.Apellido_M) AS Paciente 
+                FROM Paciente Pa
+                LEFT JOIN Usuario U ON Pa.CURP = U.CURP";
     $stmt = $conn->seleccionar($usuarios);
 
 
@@ -27,7 +28,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crear cuenta</title>
-    <link rel="stylesheet" href="../../css/styles.css">
+    <link rel="stylesheet" href="../css/styles.css">
     
 
 </head>
@@ -38,18 +39,18 @@
     
 
     <div class=" centrar">
-        <h2>Modificar datos de un paciente</h2>
+        <h2>Ver datos de un paciente</h2>
         
     </div>
-    <form class="crear-cuenta" action="modificarPacienteR.php" method="POST">
+    <form class="crear-cuenta" action="mostrarHistorialPaciente.php" method="POST">
             <fieldset>
-
-                <label for="paciente">Seleccione un paciente</label>
+                
+                <label for="paciente">Seleccione un paciente para ver sus datos médicos</label>
                 <select name="paciente" required>
-                    <option value="" disabled selected required>Seleccione una opcion</option>
+                    <option value="" disabled selected required>Seleccione un paciente</option>
                     <?php
                         foreach ($stmt as $row) {
-                            echo "<option value= ". $row['ID'] ."> ". $row['Nombre'] . " </option>";
+                            echo "<option value= ". $row['id'] .">".  $row['id']. " - " . $row['Paciente'] . " </option>";
                         }
                     ?>
                 </select>
@@ -60,7 +61,7 @@
         </form>
 
         <div class="logout centrar">
-            <a class="border" href="../inicioRecepcionista.php">Regresar al menú principal</a>
+            <a class="border" href="inicioDoctor.php">Regresar al menú principal</a>
         </div>
 
    

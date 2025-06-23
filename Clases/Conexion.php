@@ -9,17 +9,17 @@ class Conexion {
 
     private function conectar() {
 
-        /*
+        
         $host = "DESKTOP-81BAFFF";
-        $db = "ClinicaEspecialidadV6";
+        $db = "ClinicaEspecialidadV11";
         $username = "sa";
         $password = "Admin123";
-        */
+        
 
-        $host = "HP_DE_OMAR\MSSQLSERVER2";
-        $db = "ClinicaEspecialidadV6";
-        $username = "sa";
-        $password = "Admin123";
+        // $host = "LAPTOP-7AU5T3D0";
+        // $db = "ClinicaEspecialidadV6";
+        // $username = "userapela";
+        // $password = "userapela";
 
 
         try {

@@ -8,6 +8,10 @@ if (!isset($_SESSION['email'])) {
 include_once __DIR__ . "/../Clases/Conexion.php";
 $conn = new Conexion();
 
+//validacion del sp para barrer las citas y cancelar las pendientes de pago
+    $SPCanFaltaPago = "EXEC CancelacionFaltaDePago";
+    $conn->seleccionar($SPCanFaltaPago);
+
 // 1) Obtener el ID_Paciente a partir del email de sesión
 $sql = "
     SELECT P.ID_Paciente AS id
@@ -33,7 +37,8 @@ if ($stmt) {
               CONVERT(VARCHAR(10), C.Fecha_Reservacion, 23)  AS FechaRes,
               Con.Numero               AS NumConsultorio,
               Con.Piso                 AS PisoConsultorio,
-              EC.EstatusCita           AS Estatus
+              EC.EstatusCita           AS Estatus,
+              format(C.Monto_Devuelto,'N2') as Devolucion
             FROM Cita C
             JOIN Medico M     ON C.ID_Medico      = M.ID_Medico
             JOIN Empleado E   ON M.ID_Empleado    = E.ID_Empleado
@@ -43,7 +48,6 @@ if ($stmt) {
             JOIN Consultorio Con ON C.ID_Consultorio = Con.ID_Consultorio
             JOIN EstatusCita EC  ON C.ID_EstatusCita   = EC.ID_EstatusCita
            WHERE C.ID_Paciente = ?
-           ORDER BY C.Fecha_Cita DESC
         ";
         $paramConsulta = [ $row['id'] ];
         $resConsulta   = $conn->seleccionar($consulta, $paramConsulta)->fetchAll(PDO::FETCH_ASSOC);
@@ -76,6 +80,7 @@ if ($stmt) {
           <th>Consultorio</th>
           <th>Piso</th>
           <th>Estatus</th>
+          <th>Devolucion</th>
         </tr>
       </thead>
       <tbody>
@@ -91,6 +96,7 @@ if ($stmt) {
             <td><?= htmlspecialchars($cita['NumConsultorio']) ?></td>
             <td><?= htmlspecialchars($cita['PisoConsultorio']) ?></td>
             <td><?= htmlspecialchars($cita['Estatus']) ?></td>
+            <td><?= htmlspecialchars($cita['Devolucion']) ?></td>
           </tr>
         <?php endforeach; ?>
       <?php else: ?>

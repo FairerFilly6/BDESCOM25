@@ -36,10 +36,24 @@
 
             if (!empty($id) && is_numeric($cantidad) && $cantidad > 0 || $id = "") {
                 
-                $_SESSION['carrito']['medicamentos'][] = [
-                    'id' => $id,
-                    'cantidad' => $cantidad
-                ];
+                //----> posible solucion
+
+                $isNew =  true;
+                foreach ($_SESSION['carrito']['medicamentos'] as $i => $med) {
+                    if ( $med['id'] == $id ) {
+                        $_SESSION['carrito']['medicamentos'][$i]['cantidad'] = $med['cantidad'] + $cantidad;
+                        $isNew = false;
+                        break;
+                    }
+                }
+
+                if ( $isNew ) {
+                    $_SESSION['carrito']['medicamentos'][] = [
+                        'id' => $id,
+                        'cantidad' => $cantidad
+                    ];
+                }
+                
             } else {
                 echo "<script>alert('Por favor selecciona un medicamento y una cantidad válida.');</script>";
             }
@@ -49,20 +63,33 @@
             $cantidad = $_POST['cantidad_srv'];
 
             if (!empty($id) && is_numeric($cantidad) && $cantidad > 0 || $id = "") {
-               
-                $_SESSION['carrito']['servicios'][] = [
-                    'id' => $id,
-                    'cantidad' => $cantidad
-                ];
+
+                $isNew =  true;
+                foreach ($_SESSION['carrito']['servicios'] as $i => $serv) {
+                    if ( $serv['id'] == $id ) {
+                        $_SESSION['carrito']['servicios'][$i]['cantidad'] = $serv['cantidad'] + $cantidad;
+                        $isNew = false;
+                        break;
+                    }
+                }
+
+                if ( $isNew ) {
+                    $_SESSION['carrito']['servicios'][] = [
+                        'id' => $id,
+                        'cantidad' => $cantidad
+                    ];
+                }
+
+                
             } else {
                 echo "<script>alert('Por favor selecciona un servicio y una cantidad válida.');</script>";
             }
         }
         if ($_POST['accion'] === 'vaciar') {
             $_SESSION['carrito'] = [
-            'medicamentos' => [],
-            'servicios' => []
-        ];
+                'medicamentos' => [],
+                'servicios' => []
+            ];
         }
 
         if ($_POST['accion'] === 'confirmar') {
@@ -88,12 +115,11 @@
                 if($exitoVenta){
                     //si la venta procede obtenemos el id de esta
                     $idVenta = $conn->lastInsertId();
-                    
-
-                    
+                    // --------------> ERROR
+                    // el error sucede aqui, cuando se eligen 2 veces el mismo serv/med
                     //iteramos sobre el carrito en medicamentos para insertarlo en detalle medicamento
                     foreach ($_SESSION['carrito']['medicamentos'] as $ventaMed) {
-                        
+
                         $insercionDetalleMed = "INSERT INTO DetalleMedicamento VALUES (?,?,?)";
                         $paramDetalleMed = array($idVenta, $ventaMed['id'],$ventaMed['cantidad']);
                         $exitoInsercionDetalleMed = $conn->insertar($insercionDetalleMed, $paramDetalleMed);
@@ -123,7 +149,11 @@
                     if (!$exitoInsercionPago) {
                         exit;
                     }else{
-                          header('Location: mostrarVentas.php');
+                        $_SESSION['carrito'] = [
+                            'medicamentos' => [],
+                            'servicios' => []
+                        ];
+                        header('Location: mostrarVentas.php');
                     }
                     
                 }

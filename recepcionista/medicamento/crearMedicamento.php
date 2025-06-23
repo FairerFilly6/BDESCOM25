@@ -48,12 +48,12 @@
     
 
     <div class=" centrar">
-        <h2>Registrar un servicio</h2>
+        <h2>Registrar un Medicamento</h2>
         
     </div>
     <form class="crear-cuenta" action="crearMedicamento.php" method="POST">
             <fieldset>
-                <legend>Información del servicio</legend>
+                <legend>Información del Medicamento</legend>
 
                 <label for="nombre">Nombre:</label>
                 <input type="text" name="nombre" required>

@@ -60,7 +60,6 @@
     </div>
     <form class="crear-cuenta" action="procesarCita.php" method="POST">
             <fieldset>
-                <legend>Datos personales</legend>
 
                 <label for="paciente">Seleccionar Un Paciente</label>
                 <select name="Paciente" id="paciente" required>

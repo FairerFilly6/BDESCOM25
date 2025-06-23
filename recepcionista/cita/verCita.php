@@ -9,6 +9,9 @@
 
     include_once("../../Clases/Conexion.php");
     $conn = new Conexion();
+    //validacion del sp para barrer las citas y cancelar las pendientes de pago
+    $SPCanFaltaPago = "EXEC CancelacionFaltaDePago";
+    $conn->seleccionar($SPCanFaltaPago);
     $sql = 
 
     "select
@@ -18,7 +21,8 @@
         cit.Fecha_Cita as Fecha,
         format( cast(hor.Inicio_Horario as datetime), 'hh:ss tt' ) + ' - ' + format( cast(hor.Fin_Horario as datetime), 'hh:ss tt' ) as Horario,
         con.Numero as Consultorio,
-        eCit.EstatusCita as Estatus
+        eCit.EstatusCita as Estatus,
+        format(cit.Monto_Devuelto,'N2') as Devolucion
 
     from
         Cita cit left join Horario hor on cit.ID_Horario=hor.ID_Horario
@@ -59,12 +63,13 @@
         <thead>
             <tr>
                 <th>FOLIO</th>
-                <th>MEDICO</th>
-                <th>PACIENTE</th>
-                <th>FECHA</th>
-                <th>HORARIO</th>
-                <th>CONSULTORIO</th>
-                <th>ESTATUS</th>
+                    <th>MEDICO</th>
+                    <th>PACIENTE</th>
+                    <th>FECHA</th>
+                    <th>HORARIO</th>
+                    <th>CONSULTORIO</th>
+                    <th>ESTATUS</th>
+                    <th>Devolucion</th>
             </tr>
         </thead>
 
@@ -73,15 +78,16 @@
         <?php
         if($resConsulta){
             foreach($resConsulta as $row){
-                echo "<tr>";
-                echo "<td>" . $row['Folio'] . "</td>";
-                echo "<td>" . $row['Medico'] . "</td>";
-                echo "<td>" . $row['Paciente'] . "</td>";
-                echo "<td>" . $row['Fecha'] . "</td>";
-                echo "<td>" . $row['Horario'] . "</td>";
-                echo "<td>" . $row['Consultorio'] . "</td>";
-                echo "<td>" . $row['Estatus'] . "</td>";
-                echo "</tr>";
+                        echo "<tr>";
+                        echo "<td>" . $row['Folio'] . "</td>";
+                        echo "<td>" . $row['Medico'] . "</td>";
+                        echo "<td>" . $row['Paciente'] . "</td>";
+                        echo "<td>" . $row['Fecha'] . "</td>";
+                        echo "<td>" . $row['Horario'] . "</td>";
+                        echo "<td>" . $row['Consultorio'] . "</td>";
+                        echo "<td>" . $row['Estatus'] . "</td>";
+                        echo "<td>" . $row['Devolucion'] . "</td>";
+                        echo "</tr>";
             }
         }
         ?>

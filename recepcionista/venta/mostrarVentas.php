@@ -35,13 +35,11 @@
 <body>
 
 <div class="header">
-    <h1>Ventas registradas</h1>
+    <h1>Clínica de especialidad</h1>
 </div>
 
 <div class="menu centrar">
-    <h2>Bienvenido Paciente</h2>
-
-    <h3>Ventas registradas</h3>
+    <h2>Ventas Registradas</h2>
     <table class="tabla-consultas">
         <thead>
             <tr>
@@ -76,9 +74,8 @@
     </div>
 
     <div class="logout centrar">
-        <a class="border" href="../inicioRecepcionista.php">Regresar al menú principal</a>
+        <a class="border" href="../inicioRecepcionista.php">Realizar al menu principal</a>
     </div>
-    
     <div class="logout centrar">
         <a class="border" href="#">Cerrar sesión</a>
     </div>

@@ -147,19 +147,7 @@
         </ul>
     </div>
 
-    <div class=" border ">
-        <h3 class="centrar">Venta</h3>
-        
-        <ul class="lista-opciones">
-            <li class="elemento-opciones">
-                <a href="venta/CrearVenta.php">Registrar venta</a>
-            </li>
-            <li class="elemento-opciones">
-                <a href="venta/mostrarVentas.php">Historial de ventas</a>
-            </li>
-
-        </ul>
-    </div>
+   
 
 
     <div class="logout centrar">

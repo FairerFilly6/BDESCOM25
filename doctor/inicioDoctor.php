@@ -37,7 +37,7 @@
         </ul>
     </div>
     <div class="logout centrar">
-        <a class="border" href="#">Cerrar sesión</a>
+        <a class="border" href="../paciente/logout.php">Cerrar sesión</a>
     </div>
 
 

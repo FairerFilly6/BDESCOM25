@@ -15,7 +15,7 @@
             LEFT JOIN Recepcionista R ON V.ID_Recepcionista = R.ID_Recepcionista
             LEFT JOIN Empleado E ON R.ID_Empleado = E.ID_Empleado
             LEFT JOIN Usuario U ON E.CURP = U.CURP
-            RIGHT JOIN Pago P ON P.ID_Venta = V.ID_Venta";
+            LEFT JOIN Pago P ON P.ID_Venta = V.ID_Venta";
 
 
     $resConsulta = $conn->seleccionar($sql);

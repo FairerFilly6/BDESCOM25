@@ -68,9 +68,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['idCita'])) {
                 $exitoCitaAtendida = $conn->modificar($citaAtendida,$paramCitaAtendida);
                 
                 if ($exitoDetalleReceta && $exitoCitaAtendida) {
-                    echo "todo bie vaya";
+                    header("Location: mostrarRecetas.php");
                 }else{
-                    echo "algo fallo";
+                    exit;
                 }
             }
         }

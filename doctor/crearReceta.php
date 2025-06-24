@@ -45,7 +45,7 @@
                 LEFT JOIN Paciente Pac ON Cit.ID_Paciente = Pac.ID_Paciente
                 LEFT JOIN EstatusCita EC ON Cit.ID_EstatusCita = EC.ID_EstatusCita
                 LEFT JOIN Usuario Usr ON Pac.CURP = Usr.CURP
-                WHERE Cit.ID_Medico = ? AND Cit.ID_EstatusCita = 2
+                WHERE Cit.ID_Medico = ? AND Cit.ID_EstatusCita = 2 
                 ORDER BY Cit.Fecha_Cita ASC";
             $paramConsulta = [$row["id"]];
 
@@ -109,7 +109,7 @@
     </div>
     
     <div class="logout centrar">
-        <a class="border" href="#">Cerrar sesión</a>
+        <a class="border" href="../paciente/logout.php">Cerrar sesión</a>
     </div>
 
 

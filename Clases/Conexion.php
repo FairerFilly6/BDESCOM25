@@ -10,10 +10,10 @@ class Conexion {
     private function conectar() {
 
         
-        $host = "DESKTOP-81BAFFF";
-        $db = "ClinicaEspecialidadV11";
-        $username = "sa";
-        $password = "Admin123";
+        $host = "";
+        $db = "ClinicaEspecialidad";
+        $username = "";
+        $password = "";
         
 
         // $host = "LAPTOP-7AU5T3D0";

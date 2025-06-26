@@ -12,9 +12,12 @@ begin
 				left join Cita c on c.ID_Medico = m.ID_Medico
 				where c.ID_EstatusCita in ( 1, 2 )
 		) begin
-			RAISERROR('No está permitido dar de baja a un doctor si tiene una cita pendiente.', 16, 1);
+			RAISERROR('No estï¿½ permitido dar de baja a un doctor si tiene una cita pendiente.', 16, 1);
 			rollback transaction;
 			return;
+		end
+		else begin
+			update u set u.Estatus=i.Estatus from Usuario u join inserted i on u.CURP=i.CURP;
 		end
 	end
 	else if exists (
@@ -44,8 +47,6 @@ begin
 			u.Pwd = i.Pwd
 		from Usuario u join inserted i on u.CURP=i.CURP;
 	end
-	else begin
-		update u set u.Estatus=i.Estatus from Usuario u join inserted i on u.CURP=i.CURP;
-	end
+	
 
 end
